@@ -12,9 +12,23 @@ import {
     addDoc,
     updateDoc,
     doc, 
+    deleteDoc,
+    setDoc,
     serverTimestamp, 
     arrayUnion
 } from "firebase/firestore";
+import {
+    GoogleAuthProvider,
+    signInWithPopup,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile,
+    sendPasswordResetEmail,
+
+} from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -38,16 +52,16 @@ const analytics = getAnalytics(app);
 
 // Authentication functions
 export const authenticateWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    return firebase.auth().signInWithPopup(provider);
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(provider);
 }
 
 export const authenticateWithEmail = (email, password) => {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
+    return signInWithEmailAndPassword(email, password);
 }
 
 export const logout = () => {
-    return firebase.auth().signOut();
+    return signOut();
 }
 
 // Enums
