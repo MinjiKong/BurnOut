@@ -45,6 +45,10 @@ export const authenticateWithEmail = (email, password) => {
     return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
+export const logout = () => {
+    return firebase.auth().signOut();
+}
+
 // Enums
 export const ApplicationStatus = {
     Applied: 'Applied',
