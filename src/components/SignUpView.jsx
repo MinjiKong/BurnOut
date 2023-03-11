@@ -20,8 +20,10 @@ function SignUpView(props){
             <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" name="email"></input>
             <label htmlfor="password">Password </label>
             <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter password"name="password"></input>
-            <button type="submit">Sign Up</button>
+            <br></br>
+            <button className="signup-button" type="submit">Sign Up</button>
         </form>
+        <br></br>
         <button className="link-btn" onClick={() => props.onFormSwitch('login')}>Already have an account? Login here.</button>
       </div>
     )

@@ -30,14 +30,16 @@ function LoginView(props) {
       </header>
       <br></br>
       <h1>----------------------------OR----------------------------</h1>
-        <br></br>
+      <br></br>
         <form className="login-form" onSubmit={handleSubmit}>
           <label htmlfor="email">Email </label>
           <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" name="email"></input>
           <label htmlfor="password">Password </label>
           <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter password"name="password"></input>
-          <button type="submit">Log In</button>
+          <br></br>
+          <button className="login-button" type="submit">Log In</button>
       </form>
+      <br></br>
       <button className="link-btn" onClick={() => props.onFormSwitch('signup')}>Don't have an account? Register here.</button>
       </div>
     </div>
