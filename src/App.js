@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-beige">
         <Router>  
           {/* <Header/>  */}
           <Routes>
