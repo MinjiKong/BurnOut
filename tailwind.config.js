@@ -15,6 +15,7 @@ module.exports = {
     
     fontFamily: {
       display: ["oswald"],
+      'saira': ["Saira Stencil One"],
     }
 
     

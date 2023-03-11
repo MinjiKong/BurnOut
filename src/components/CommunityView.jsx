@@ -2,7 +2,7 @@ import React from 'react'
 
 function CommunityView() {
   return (
-    <div>CommunityView</div>
+    <div className='font-saira'>CommunityView</div>
   )
 }
 
