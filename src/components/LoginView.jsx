@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import jwt_decode from "jwt-decode";
 import { GoogleLogin } from "@react-oauth/google";
 import ApplicationsView from './ApplicationsView';
+import './login-signup.css'
 
 function LoginView(props) {
   const [email, setEmail] = useState('');

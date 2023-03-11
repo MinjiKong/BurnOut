@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import "./login-signup.css"
 
 function SignUpView(props){
     const [email, setEmail] = useState('');
