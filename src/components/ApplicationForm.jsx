@@ -2,7 +2,7 @@ import React from 'react'
 
 function ApplicationForm() {
   return (
-    <div>ApplicationForm</div>
+    <div className='text-7xl'>ApplicationForm</div>
   )
 }
 

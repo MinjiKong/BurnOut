@@ -1,20 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 function Navbar() {
 
-  const links = [
+  const navBarLinks = [
     {
         id: 1,
-        name: 'Applications',
-        pic: '../images/coffee.svg',
+        name: 'profile',
+        pic: '../images/person.svg',
         link: '/'
 
     },
     {
         id: 2,
         name: 'Community',
-        pic: '../images/privacy-policy.svg',
-        link: '/friends'
+        pic: '../images/community_2.svg',
+        link: '/community'
 
 
     },
@@ -28,17 +30,27 @@ function Navbar() {
   //   },
     {
         id: 4,
-        name: 'Profile',
-        pic: '../images/setting.svg',
-        link: '/settings'
-
-
+        name: 'Navbar',
+        pic: '../images/leaderboard.svg',
+        link: '/leaderboard'
     },
 
 ]
   return (
-    <div>Navbar</div>
-  )
+    <div className="nav">
+        <div className='flex items-center w-full h-20 text-white fixed bottom-0 bg-dark-navy rounded-t'>
+            {navBarLinks.map(({ id, link, pic, name }) => (
+                <Link className=' flex-col w-1/3' key={id} to={link}>
+                    {/* <div className="flex-col w-1/3"> */}
+                        <div className="text-center active:bg-violet-100 rounded-full max-w-md color-white">
+                            <object className="mx-auto my-auto" type="image/svg+xml" data={pic} alt={name}></object>
+                        </div>
+                    {/* </div> */}
+                </Link>
+            ))}
+        </div>
+
+    </div>  )
 }
 
 export default Navbar

@@ -1,19 +1,25 @@
+import ApplicationsView from "./components/ApplicationsView";
+import CommunityView from "./components/CommunityView";
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p className="text-7xl">
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Router>  
+          {/* <Header/>  */}
+          <Routes>
+            <Route path='/' element={<ApplicationsView/>}></Route>
+            {/* <Route path="/login" element={<Login/>}></Route> */}
+            <Route path="/community" element={<CommunityView />}></Route>
+            {/* <Route path='/settings' element={<Settings />}></Route> */}
+
+          </Routes>
+          <Navbar />
+        </Router>
+
+
     </div>
   );
 }
