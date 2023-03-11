@@ -1,11 +1,15 @@
+import React, { useState } from "react";
 import ApplicationsView from "./components/ApplicationsView";
 import CommunityView from "./components/CommunityView";
+import LoginView from "./components/LoginView";
+import SignUpView from "./components/SignUpView";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from "./components/Header";
 import LeaderboardView from "./components/LeaderboardView";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import './App.css'
 
 function App() {
   const location = useLocation();
@@ -42,10 +46,8 @@ function App() {
           </Routes>
           <Navbar />
         {/* </Router> */}
-
-
-    </div>
-  );
+      </div>
+  )
 }
 
-export default App;
+export default App

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
+
+.App {
+    background-color: #0D335D;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-form-container, .login-form, .signup-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form-container {
+    padding: 5rem;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+label {
+    text-align: left;
+    color: white;
+    padding: 0.25rem 0;
+    font-family: 'Salsa', cursive;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    font-family: 'Salsa', cursive;
+}
+
+.login-button, .signup-button{
+    color: white;
+    font-size: 15pt;
+    font-weight: bold;
+    border: none;
+    background-color: #1A508B;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Salsa', cursive;
+}
+
+input{
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+}
+
+.link-btn{
+    background: none;
+    color: white;
+    text-decoration:underline;
+}
+
+.title{
+    font-size: 100px;
+    color: white;
+    font-family: 'Saira Stencil One', cursive;
+    margin-bottom: 30px;
+}
+
+.google-header{
+    color: red;
+}
