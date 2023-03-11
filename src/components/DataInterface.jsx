@@ -4,6 +4,7 @@ import { getAnalytics } from "firebase/analytics";
 import { 
     getFirestore,
     query,
+    where, 
     orderBy,
     onSnapshot,
     collection,
@@ -11,7 +12,7 @@ import {
     getDocs, 
     addDoc,
     updateDoc,
-    doc, 
+    doc,
     deleteDoc,
     setDoc,
     serverTimestamp, 

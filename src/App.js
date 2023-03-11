@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import LeaderboardView from "./components/LeaderboardView";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import ApplicationForm from "./components/ApplicationForm";
 
 function App() {
   const location = useLocation();
@@ -34,12 +35,14 @@ function App() {
         {/* <Router>   */}
           <Header text={text}/>
           <Routes>
-            <Route path='/' element={<ApplicationsView/>}></Route>
+          
+            <Route path='/' element={<ApplicationForm/>}></Route>
             {/* <Route path="/login" element={<Login/>}></Route> */}
             <Route path="/community" element={<CommunityView />}></Route>
             {/* <Route path='/settings' element={<Settings />}></Route> */}
             <Route path='/leaderboard' element={<LeaderboardView />}></Route>
           </Routes>
+        
           <Navbar />
         {/* </Router> */}
 
