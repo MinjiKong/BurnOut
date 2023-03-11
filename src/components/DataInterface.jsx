@@ -34,6 +34,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
+
+// Authentication functions
+export const authenticateWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return firebase.auth().signInWithPopup(provider);
+}
+
+export const authenticateWithEmail = (email, password) => {
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+}
+
+// Enums
 export const ApplicationStatus = {
     Applied: 'Applied',
     Interviewing: 'Interviewing',
@@ -71,7 +83,7 @@ export const JobPositions = {
     WebDeveloper: 'Web Developer',
 }
 
-
+// data functions
 export const createApplication = (applicationData) => {
     const applicationsColRef = collection(db, "applications");
     return addDoc(applicationsColRef, {
@@ -80,6 +92,7 @@ export const createApplication = (applicationData) => {
         applicationStatus: applicationData.applicationStatus || ApplicationStatus.Applied,
         jobPosition: applicationData.jobPosition,
         comments: applicationData.comments,
+        communityID: applicationData.communityID,
     }).then((newApplicationRef) => {
         console.log("Document written with ID: ", newApplicationRef.id);
     }).catch((error) => {
@@ -88,21 +101,6 @@ export const createApplication = (applicationData) => {
 }
 
 export const updateApplication = (applicationData) => {
-    // return (dispatch, getState, { getFirebase, getFirestore }) => {
-    //     // make async call to database
-    //     const firestore = getFirestore();
-    //     firestore.collection('applications').doc(applicationData.id).update({
-    //     companyName: applicationData.companyName,
-    //     dateApplied: applicationData.dateApplied,
-    //     applicationStatus: applicationData.applicationStatus,
-    //     jobPosition: applicationData.jobPosition,
-    //     comments: applicationData.comments,
-    //     }).then(() => {
-    //     dispatch({ type: 'UPDATE_APPLICATION', application });
-    //     }).catch((err) => {
-    //     dispatch({ type: 'UPDATE_APPLICATION_ERROR', err });
-    //     })
-    // }
     const applicationRef = doc(db, "applications", applicationData.id);
     return updateDoc(applicationRef, {
         companyName: applicationData.companyName,
@@ -110,6 +108,7 @@ export const updateApplication = (applicationData) => {
         applicationStatus: applicationData.applicationStatus,
         jobPosition: applicationData.jobPosition,
         comments: applicationData.comments,
+        communityID: applicationData.communityID,
     }).then(() => {
         console.log("Document successfully updated!");
     }
@@ -119,20 +118,151 @@ export const updateApplication = (applicationData) => {
     });
 }
 
-export const retrieveApplications = () => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
-        // make async call to database
-        const firestore = getFirestore();
-        firestore.collection('applications').get().then((querySnapshot) => {
-            const applications = [];
-            querySnapshot.forEach((doc) => {
-                const application = doc.data();
-                application.id = doc.id;
-                applications.push(application);
+export const getApplications = () => {
+    const applicationsColRef = collection(db, "applications");
+    const applicationsQuery = query(applicationsColRef, orderBy("dateApplied", "desc"));
+    return onSnapshot(applicationsQuery, (querySnapshot) => {
+        const applications = [];
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            applications.push({
+                id: doc.id,
+                ...doc.data()
             });
-            dispatch({ type: 'RETRIEVE_APPLICATIONS', applications });
-        }).catch((err) => {
-            dispatch({ type: 'RETRIEVE_APPLICATIONS_ERROR', err });
-        })
+        });
+        return applications;
+    });
+}
+
+export const getCommunityApplications = (communityID) => {
+    const applicationsColRef = collection(db, "applications");
+    const communityApplicationsQuery = query(applicationsColRef, where("communityID", "==", communityID), orderBy("dateApplied", "desc"));
+    return onSnapshot(communityApplicationsQuery, (querySnapshot) => {
+        const applications = [];
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            applications.push({
+                id: doc.id,
+                ...doc.data()
+            });
+        });
+        return applications;
+    });
+}
+
+export const streamCommunityApplications = (communityID, callback) => {
+    const applicationsColRef = collection(db, "applications");
+    const communityApplicationsQuery = query(applicationsColRef, where("communityID", "==", communityID), orderBy("dateApplied", "desc"));
+    return onSnapshot(communityApplicationsQuery, (querySnapshot) => {
+        const applications = [];
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            applications.push({
+                id: doc.id,
+                ...doc.data()
+            });
+        });
+        callback(applications);
+    });
+}
+
+export const deleteApplication = (applicationId) => {
+    const applicationRef = doc(db, "applications", applicationId);
+    return deleteDoc(applicationRef).then(() => {
+        console.log("Document successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
+}
+
+// user functions
+export const addUser = (user) => {
+    // call this function after new user is created in firebase auth
+    // pass in the user object(json/dict with email, username) and the userId
+    const userRef = doc(db, "users", user.id);
+    return setDoc(userRef, {
+        email: user.email,
+        userName: user.userName,
+        communityID: user.communityID,
+    }).then(() => {
+        console.log("Document successfully written!");
     }
+    ).catch((error) => {
+        console.error("Error writing document: ", error);
+    }
+    );
+}
+
+export const updateUser = (user) => {
+    const userRef = doc(db, "users", user.id);
+    return updateDoc(userRef, {
+        email: user.email,
+        userName: user.userName,
+        communityID: user.communityID,
+    }).then(() => {
+        console.log("Document successfully updated!");
+    }
+    ).catch((error) => {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error);
+    });
+}
+
+export const getUser = (userId) => {
+    const userRef = doc(db, "users", userId);
+    return getDoc(userRef).then((doc) => {
+        if (doc.exists()) {
+            return doc.data();
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+}
+
+// community functions
+export const createCommunity = (communityData) => {
+    const communitiesColRef = collection(db, "communities");
+    return addDoc(communitiesColRef, {
+        name: communityData.name,
+        dateCreated: communityData.dateCreated || new Date(),
+        members: communityData.members || [],
+        applications: communityData.applications || [],
+    }).then((newCommunityRef) => {
+        console.log("Document written with ID: ", newCommunityRef.id);
+    }).catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+}
+
+export const updateCommunity = (communityData) => {
+    const communityRef = doc(db, "communities", communityData.id);
+    return updateDoc(communityRef, {
+        name: communityData.name,
+        dateCreated: communityData.dateCreated,
+        members: communityData.members,
+        applications: communityData.applications,
+    }).then(() => {
+        console.log("Document successfully updated!");
+    }
+    ).catch((error) => {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error);
+    });
+}
+
+export const getCommunity = (communityId) => {
+    const communityRef = doc(db, "communities", communityId);
+    return getDoc(communityRef).then((doc) => {
+        if (doc.exists()) {
+            return doc.data();
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
 }
