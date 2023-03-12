@@ -6,6 +6,7 @@ import { JobPositions } from './DataInterface';
 
 function ApplicationForm() {
 
+  //Date Variable
   const [day, setDay] = useState(new Date().getDate());
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [year, setYear] = useState(new Date().getFullYear());
@@ -16,13 +17,17 @@ function ApplicationForm() {
   const [applicationStatus, setApplicationStatus] = useState("");
   const [comments, setComments] = useState("");
 
+  const { v4: uuidv4 } = require('uuid');
+
   const jobPosition = JobPositions;
 
+  //function to set the days
   const days = [];
   for (let i = 1; i <= 31; i++) {
     days.push(<option key={i} value={i}>{i}</option>);
   }
 
+  //function to set the months
   const months = [
     <option key="01" value="01">January</option>,
     <option key="02" value="02">February</option>,
@@ -38,6 +43,7 @@ function ApplicationForm() {
     <option key="12" value="12">December</option>
   ];
 
+  //function to set the years
   const years = [];
   for (let i = 1900; i <= new Date().getFullYear(); i++) {
     years.push(<option key={i} value={i}>{i}</option>);
@@ -59,14 +65,15 @@ function ApplicationForm() {
 
     setDateApplied(formattedDate);
     const randomNumber = Math.round(Math.random() * 100);
+    const communityID = uuidv4();
 
     const applicationData = {
-      companyName: {companyName},
-      dateApplied: {dateApplied},
-      applicationStatus: {applicationStatus},
-      jobPosition: {position},
-      comments: {comments},
-      communityID: randomNumber
+      companyName: companyName,
+      dateApplied: dateApplied,
+      applicationStatus: applicationStatus,
+      jobPosition: position,
+      comments: comments,
+      communityID: communityID
     }
     
     DataInterface.createApplication(applicationData);
@@ -75,7 +82,7 @@ function ApplicationForm() {
     //   DataInterface.createApplication(applicationData);
     // }, [])
 
-    console.log(`Submitted: ${companyName} ${position} ${dateApplied} ${applicationStatus} ${comments} ${day} ${month} ${year}`)
+    // console.log(`Submitted: ${companyName} ${position} ${dateApplied} ${applicationStatus} ${comments} ${day} ${month} ${year}`)
     
   }
 
