@@ -109,7 +109,7 @@ function ApplicationForm() {
       ))}
     </select>
   </div>
-
+  
   <div className="date-row">
     <div className="form-label">Date Applied</div>
     <div className="date-selectors">

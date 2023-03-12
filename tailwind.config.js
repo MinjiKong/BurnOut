@@ -16,9 +16,8 @@ module.exports = {
     fontFamily: {
       display: ["oswald"],
       'saira': ["Saira Stencil One"],
-    }
-
-    
+      'salsa': ['Salsa', 'sans-serif']
+    },
   },
   plugins: [],
 }

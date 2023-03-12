@@ -70,7 +70,7 @@ function CommunityView() {
             // <Link className=' flex-col w-1/3' key={id} to={link}>
 
             // Each card
-            <div className="mx-7 px-4 py-2 flex bg-slate-200  rounded-lg shadow " key={id}>
+            <div className="mx-7 px-4 py-2 flex bg-slate-200 text-slate-500 rounded-lg shadow " key={id}>
               {/* Image */}
               <div className="text-center rounded-full max-w-md my-auto color-white">
                 <object type="image/svg+xml" data={pic} alt={name}></object>
@@ -80,19 +80,19 @@ function CommunityView() {
               <div className="flex flex-col justify-center ml-5 grow">
                 {/* Top row */}
                 <div className="flex flex-row justify-between mb-2">
-                  <div className="text-md font-bold">{name}</div>
-                  <div className="text-md">{datetime}</div>
+                  <div className="text-md font-saira font-bold">{name}</div>
+                  <div className="text-md font-salsa">{datetime}</div>
                 </div>
 
                 {/* Content */}
-                <div className="text-md mb-2">{comment}</div>
+                <div className="text-md mb-2 font-salsa">{comment}</div>
 
                 {/* Stats */}
                 <div className="flex flex-row gap-1 justify-end">
                   <img className="my-auto" src={application} alt="application"></img>
-                  <div className="text-black-slate-200 my-auto w-1/5"> {applications}</div>
+                  <div className="text-black-slate-200 font-saira my-auto w-1/5"> {applications}</div>
                   <img className="my-auto" src={rejection} alt="rejection"></img>
-                  <div className="text-black-slate-200 my-auto"> {rejections}</div>
+                  <div className="text-black-slate-200 font-saira my-auto"> {rejections}</div>
                 </div>
               </div>
             </div>

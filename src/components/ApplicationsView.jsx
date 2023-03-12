@@ -59,35 +59,37 @@ function ApplicationsView() {
   return (
     <div className="rounded-lg shadow p-5 h-full bg-beige">
 
-          <div className="counter mb-4 flex font-saira text-xl gap-3 justify-center border-b-1 border-black">
+          <div className="counter mb-1 flex font-saira text-xl gap-3 justify-center border-b-1 border-black">
           {/* <img src={application} alt="" /> */}
-          {/* <p className='my-auto'>Applications: {applicationData.length}</p> */}
-          <p className='my-auto'>Applications: 76</p>
+          <p className='my-auto font-saira'>Applications: 76</p>
           {/* <img src={rejection} alt="" /> */}
-          <p className='my-auto pb-'>Rejections: 4</p>
+          <p className='my-auto font-saira'>Rejections: 4</p>
         </div>
-
+      <br></br>
       {applicationData.map(data => (
         <div key={data.id} className="flex items-center mb-4 border p-3 bg-slate-200 rounded-lg">
           {/* <img src={personPost[0].pic} alt="Profile" className="w-12 h-12 rounded-full mr-4" /> */}
           <div>
             {/* <h3 className="font-bold">{personPost[0].name}</h3> */}
-            <p className="text-gray-600 font-saira text-lg mb-2">
-              {data.companyName}
+            {/* <p className="text-gray-600 font-saira text-lg mb-2">
+              {data.companyName} */}
+            <p className="text-gray-600 mb-2 font-salsa">
+              Company Name: <span className="ml-10 font-saira"></span>{data.companyName}
             </p>
-            <p className="text-gray-600 mb-2">
+            <p className="text-gray-600 mb-2 font-salsa">
               Date Applied: <span className="ml-12"></span>{new Date(data.dateApplied * 1000).toLocaleString()}
             </p>
-            <p className="text-gray-600 mb-2">
+            <p className="text-gray-600 mb-2 font-salsa">
               Applications Status: <span className="ml-10"></span>{data.applicationStatus}
             </p>
-            <p className="text-gray-600 mb-2">
+            <p className="text-gray-600 mb-2 font-salsa">
               Job Position: <span className="ml-10"></span>{data.jobPosition}
             </p>
-            <p className="text-gray-600 mb-0">
+            <p className="text-gray-600 mb-0 font-salsa">
               Comments: <span className="ml-10"></span>{data.comments}
             </p>
             {/* <hr className="h-2"></hr> */}
+            <br></br>
           </div>
         </div>
 
