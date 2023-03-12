@@ -57,6 +57,7 @@ export const authenticateWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
         const result = await signInWithPopup(auth, provider);
+        addUser(result.user);
         return result.user;
     } catch (error) {
         console.log(error);
@@ -75,6 +76,15 @@ export const isLoggedIn = () => {
     } else {
         console.log("User is not logged in");
         return false;
+    }
+}
+
+export const getUserID = () => {
+    const user = getAuth().currentUser;
+    if (user) {
+        return user.uid;
+    } else {
+        return null;
     }
 }
 
@@ -130,6 +140,7 @@ export const createApplication = (applicationData) => {
         jobPosition: applicationData.jobPosition,
         comments: applicationData.comments,
         communityID: applicationData.communityID,
+        userID: applicationData.userID,
     }).then((newApplicationRef) => {
         console.log("Document written with ID: ", newApplicationRef.id);
     }).catch((error) => {
@@ -146,6 +157,7 @@ export const updateApplication = (applicationData) => {
         jobPosition: applicationData.jobPosition,
         comments: applicationData.comments,
         communityID: applicationData.communityID,
+        userID: applicationData.userID,
     }).then(() => {
         console.log("Document successfully updated!");
     }
@@ -155,9 +167,9 @@ export const updateApplication = (applicationData) => {
     });
 }
 
-export const getApplications = () => {
+export const getApplications = (userID) => {
     const applicationsColRef = collection(db, "applications");
-    const applicationsQuery = query(applicationsColRef, orderBy("dateApplied", "desc"));
+    const applicationsQuery = query(applicationsColRef, where("userID", "==", userID), orderBy("dateApplied", "desc"));
     return onSnapshot(applicationsQuery, (querySnapshot) => {
         const applications = [];
         querySnapshot.forEach((doc) => {
@@ -188,6 +200,8 @@ export const getCommunityApplications = (communityID) => {
 }
 
 export const streamCommunityApplications = (communityID, callback) => {
+    // const userRef = doc(db, "users", getUserID());
+    // const userDoc = collection(userRef, "applications");
     const applicationsColRef = collection(db, "applications");
     const communityApplicationsQuery = query(applicationsColRef, where("communityID", "==", communityID), orderBy("dateApplied", "desc"));
     return onSnapshot(communityApplicationsQuery, (querySnapshot) => {
@@ -216,11 +230,11 @@ export const deleteApplication = (applicationId) => {
 export const addUser = (user) => {
     // call this function after new user is created in firebase auth
     // pass in the user object(json/dict with email, username) and the userId
-    const userRef = doc(db, "users", user.id);
+    const userRef = doc(db, "users", user.uid);
     return setDoc(userRef, {
         email: user.email,
-        userName: user.userName,
-        communityID: user.communityID,
+        userName: user.displayName,
+        communityID: user.communityID || "0Km4CwF0nULxl1qtpyuB",
     }).then(() => {
         console.log("Document successfully written!");
     }
@@ -231,11 +245,11 @@ export const addUser = (user) => {
 }
 
 export const updateUser = (user) => {
-    const userRef = doc(db, "users", user.id);
+    const userRef = doc(db, "users", user.uid);
     return updateDoc(userRef, {
         email: user.email,
-        userName: user.userName,
-        communityID: user.communityID,
+        userName: user.displayName,
+        communityID: user.communityID || "0Km4CwF0nULxl1qtpyuB",
     }).then(() => {
         console.log("Document successfully updated!");
     }
@@ -245,7 +259,8 @@ export const updateUser = (user) => {
     });
 }
 
-export const getUser = (userId) => {
+export const getUser = () => {
+    const userId = getUserID();
     const userRef = doc(db, "users", userId);
     return getDoc(userRef).then((doc) => {
         if (doc.exists()) {
