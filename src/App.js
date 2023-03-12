@@ -9,7 +9,6 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import LeaderboardView from "./components/LeaderboardView";
-import { useLocation } from "react-router-dom";
 import * as DataInterface from './components/DataInterface'
 import ProfileView from "./components/ProfileView";
 

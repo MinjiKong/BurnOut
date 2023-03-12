@@ -70,8 +70,10 @@ export const authenticateWithEmail = (email, password) => {
 export const isLoggedIn = () => {
     const user = getAuth().currentUser;
     if (user) {
+        console.log("User is logged in");
         return true;
     } else {
+        console.log("User is not logged in");
         return false;
     }
 }
