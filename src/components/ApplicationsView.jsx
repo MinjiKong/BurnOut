@@ -1,7 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as DataInterface from './DataInterface'
 
 function ApplicationsView() {
+
+  const [applicationData, setApplicationData] = useState([]);
+
+  const userID = DataInterface.getUserID();
+
+  useEffect(() => {
+     const data = DataInterface.getApplications(userID)
+     console.log("test");
+     console.log(data);
+    // setApplicationData(DataInterface.getApplications(userID))
+  }, [applicationData]);
+
+  // console.log("test" + applicationData.comments);
+
+  
 
 
   const personPost = [

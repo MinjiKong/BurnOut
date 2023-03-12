@@ -167,21 +167,20 @@ export const updateApplication = (applicationData) => {
     });
 }
 
-export const getApplications = (userID) => {
+export const getApplications = async (userID) => {
+    const applicationsRet = [];
     const applicationsColRef = collection(db, "applications");
-    const applicationsQuery = query(applicationsColRef, where("userID", "==", userID), orderBy("dateApplied", "desc"));
-    return onSnapshot(applicationsQuery, (querySnapshot) => {
-        const applications = [];
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            applications.push({
-                id: doc.id,
-                ...doc.data()
-            });
-        });
-        return applications;
+    const q = query(applicationsColRef, where("userID", "==", userID));
+    
+    const querySnapshot = await getDocs(q);
+  
+    querySnapshot.forEach((doc) => {
+      applicationsRet.push(doc.data());
+      console.log(doc.id, " => ", doc.data());
     });
-}
+  
+    return applicationsRet;
+  };
 
 export const getCommunityApplications = (communityID) => {
     const applicationsColRef = collection(db, "applications");
