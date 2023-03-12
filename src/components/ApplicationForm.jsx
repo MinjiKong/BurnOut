@@ -118,7 +118,7 @@ function ApplicationForm() {
 
   <div className="form-row">
     <div className="form-label">Application Status</div>
-    <select id="applicationStatus" value={position} onChange={(e) => setPosition(e.target.value)} style={{ height: "50px", backgroundColor: "#F5F8FA", border: "none", borderRadius: "9999px", padding: "0 20px" }}>
+    <select id="applicationStatus" value={position} onChange={(e) => setApplicationStatus(e.target.value)} style={{ height: "50px", backgroundColor: "#F5F8FA", border: "none", borderRadius: "9999px", padding: "0 20px" }}>
       <option value="">Choose Application Status</option>
       {statusOptions.map((option) =>(
         <option key={option.value} value={option.value}>{option.label}</option>
