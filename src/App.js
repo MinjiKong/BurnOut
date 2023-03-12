@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from "./components/Header";
 import LeaderboardView from "./components/LeaderboardView";
 import { useLocation } from "react-router-dom";
-// import './App.css'
+import ProfileView from "./components/ProfileView";
 
 function App() {
   const location = useLocation();
@@ -33,19 +33,20 @@ function App() {
 
   
   return (
-    <div className="App bg-beige">
-        {/* <Router>   */}
-          <Header text={text}/>
-          <Routes>
-            <Route path='/' element={<ApplicationsView/>}></Route>
-            {/* <Route path="/login" element={<Login/>}></Route> */}
-            <Route path="/community" element={<CommunityView />}></Route>
-            {/* <Route path='/settings' element={<Settings />}></Route> */}
-            <Route path='/leaderboard' element={<LeaderboardView />}></Route>
-          </Routes>
-          <Navbar />
-        {/* </Router> */}
-      </div>
+    // <div className="App bg-beige">
+    //     {/* <Router>   */}
+    //       <Header text={text}/>
+    //       <Routes>
+    //         <Route path='/' element={<ApplicationsView/>}></Route>
+    //         {/* <Route path="/login" element={<Login/>}></Route> */}
+    //         <Route path="/community" element={<CommunityView />}></Route>
+    //         {/* <Route path='/settings' element={<Settings />}></Route> */}
+    //         <Route path='/leaderboard' element={<LeaderboardView />}></Route>
+    //       </Routes>
+    //       <Navbar />
+    //     {/* </Router> */}
+    //   </div>
+    <ProfileView/>
   )
 }
 
