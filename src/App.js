@@ -42,10 +42,6 @@ function App() {
     }
     return children;
  };
-  useEffect(() => {
-    // console.log("useEffect")
-    RequireAuth();
-  }, [location])
   return (
     <div className="App bg-beige">
         {/* <Router>   */}
