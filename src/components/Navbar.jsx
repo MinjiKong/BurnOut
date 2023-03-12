@@ -42,7 +42,7 @@ function Navbar() {
                 <Link className=' flex-col w-1/4' key={id} to={link}>
                     {/* <div className="flex-col w-1/3"> */}
                         <div className="text-center active:bg-violet-100 rounded-full max-w-md color-white">
-                            <object className="mx-auto my-auto" type="image/svg+xml" data={pic} alt={name}></object>
+                        <img src={pic} alt={name} className="mx-auto my-auto"/>
                         </div>
                     {/* </div> */}
                 </Link>
