@@ -83,59 +83,27 @@
         margin-right: auto;
         
     }
-      
+    
     .button-row button:last-child {
-
         margin-left: auto;
 
     }
 
-/* } */
+    .applicationsButton {
+        background-color: black;
+        color: white;
+        font-size: 15px;
+        padding: 10px 40px;
+        border-radius: 15px;
+        margin: 10px 0px;
+        cursor: pointer;
 
-/*ApplicationsView*/
-.post-container {
-    margin: 10px auto;
-    border: 1px solid #e6ecf0;
-    border-radius: 10px;
-    max-width: 600px;
-    background-color: white;
-    height: 100vh;
-    margin: 20vh auto;
-  }
+    }
+
+
+
+
+
   
-  .post-header {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .profile-img {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  .header-info {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .username {
-    color: gray;
-    font-size: 14px;
-  }
-  
-  .post-content {
-    padding: 10px;
-  }
-  
-  .post-responses {
-    border-top: 1px solid #e6ecf0;
-  }
-  
-  .post-response {
-    display: flex;
-    /* align-items: */
-  }
+
 

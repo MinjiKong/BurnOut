@@ -30,57 +30,54 @@ function ApplicationsView() {
   };
 
   return (
-    <div className="post-container" >
-      <div className="post-header">
+<div className="bg-white rounded-lg shadow p-4">
+  <div className="flex items-center mb-2">
+    <img
+      src={personPost[0].pic}
+      alt="Profile"
+      className="w-12 h-12 rounded-full mr-4"
+    />
+    <div>
+      <h3 className="font-bold">{personPost[0].name}</h3>
+      <p className="text-gray-600">
+        Applications: {personPost[0].applications}
+      </p>
+      <p className="text-gray-600">
+        Rejections: {personPost[0].rejections}
+      </p>
+    </div>
+  </div>
+  <div className="mb-4">
+    <p className="text-gray-700">{personPost[0].comment}</p>
+  </div>
+  <div className="mb-4">
+    {responses.map((r, index) => (
+      <div key={index} className="flex items-start mb-4">
         <img
           src={personPost[0].pic}
           alt="Profile"
-          className="profile-img"
+          className="w-8 h-8 rounded-full mr-2"
         />
-        <div className="header-info">
-          <h3>{personPost[0].name}</h3>
-          <p className="username">Applications: {personPost[0].applications}</p>
-          <p className="username">Rejections: {personPost[0].rejections}</p>
+        <div>
+          <h3 className="font-bold">John Doe</h3>
+          <p className="text-gray-600">@johndoe</p>
+          <p className="text-gray-700">{r}</p>
         </div>
       </div>
-      <div className="post-content">
-        <p>
-          {personPost[0].comment}
-        </p>
-      </div>
-
-
-
-      <div className="post-responses">
-        {responses.map((r, index) => (
-          <div key={index} className="post-response">
-            <img
-              src={personPost[0].pic}
-              alt="Profile"
-              className="profile-img"
-            />
-            <div className="response-info">
-              <h3>John Doe</h3>
-              <p className="username">@johndoe</p>
-              <p className="response-text">{r}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="post-response-form">
-        <form onSubmit={handleSubmit}>
-          <textarea
-            placeholder="Post your reply"
-            value={response}
-            onChange={handleChange}
-            className="response-input"
-          ></textarea>
-          <button type="submit" className="post-btn">
-            POST
-          </button>
-        </form>
-      </div>
-    </div>
+    ))}
+  </div>
+  <form onSubmit={handleSubmit}>
+    <textarea
+      placeholder="Post your reply"
+      value={response}
+      onChange={handleChange}
+      className="w-full p-2 border border-gray-400 rounded-lg mb-4"
+    ></textarea>
+    <button type="submit" className="applicationsButton">
+      POST
+    </button>
+  </form>
+</div>
   );
 }
 
