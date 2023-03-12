@@ -94,6 +94,22 @@ function App() {
                   </RequireAuth>
               }
             />
+            <Route
+              path="/login"
+              element={
+                  // <RequireAuth>
+                    <LoginView />
+                  // </RequireAuth>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                  // <RequireAuth>
+                    <SignUpView />
+                  // </RequireAuth>
+              }
+            />
 
           </Routes>
           <Navbar />

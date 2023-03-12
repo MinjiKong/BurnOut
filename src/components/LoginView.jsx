@@ -26,6 +26,19 @@ function LoginView(props) {
     }
   }, [user]);
 
+  // const [currentForm, setCurrentForm] = useState('login');
+  // const toggleForm = (formName) => {
+  //   setCurrentForm(formName);
+  // }
+
+  // return (
+  //   <div className="App">
+  //   {
+  //     currentForm === "login" ? <LoginView onFormSwitch={toggleForm} /> : <SignUpView onFormSwitch={toggleForm}/>
+  //   }
+  //   </div>
+  // )
+
   return (
     <div className="signIn/Up">
       <div className="auth-form-container">
@@ -54,7 +67,7 @@ function LoginView(props) {
           <button className="login-button" type="submit">Log In</button>
       </form>
       <br></br>
-      <button className="link-btn" onClick={() => props.onFormSwitch('signup')}>Don't have an account? Register here.</button>
+      <button className="link-btn" onClick={() => navigate("/signup")}>Don't have an account? Register here.</button>
       </div>
     </div>
   )
