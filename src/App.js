@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import LeaderboardView from "./components/LeaderboardView";
+import ProfileView from "./components/ProfileView";
 
 function App() {
   const location = useLocation();
@@ -45,6 +46,8 @@ function App() {
               {/* <Route path='/signup' element={<SignUpView />}></Route> */}
 
                 <Route path='/' element={<ApplicationsView/>}></Route>
+                <Route path='/profile' element={<ProfileView/>}></Route>
+
 
                 <Route path="/community" element={<CommunityView />}></Route>
 
