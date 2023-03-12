@@ -55,14 +55,14 @@ function ApplicationsView() {
   };
 
   return (
-<div className="rounded-lg shadow p-10">
+<div className="rounded-lg shadow p-10 max-h-screen bg-beige">
   {applicationData.map(data => (
-    <div key={data.id} className="flex items-center mb-4">
+    <div key={data.id} className="flex items-center mb-4 ">
       <img src={personPost[0].pic} alt="Profile" className="w-12 h-12 rounded-full mr-4"/>
       <div>
         {/* <h3 className="font-bold">{personPost[0].name}</h3> */}
         <p className="text-gray-600 mb-2">
-          Company Name: <span className="ml-10"></span>{data.companyName}
+          Company Name: <span className="ml-10 font-saira"></span>{data.companyName}
         </p>
         <p className="text-gray-600 mb-2">
           Date Applied: <span className="ml-12"></span>{new Date(data.dateApplied*1000).toLocaleString()}
@@ -76,7 +76,7 @@ function ApplicationsView() {
         <p className="text-gray-600 mb-0">
           Comments: <span className="ml-10"></span>{data.comments}
         </p>
-        <hr className="divide-200"></hr>
+        {/* <hr className="h-2"></hr> */}
       </div>
     </div>
     
