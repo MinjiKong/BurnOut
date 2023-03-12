@@ -57,21 +57,23 @@ function ApplicationsView() {
   };
 
   return (
-    <div className="rounded-lg shadow p-10 h-full bg-beige">
-          <div className="counter flex font-saira text-xl gap-3 justify-center border-b-1 border-black">
+    <div className="rounded-lg shadow p-5 h-full bg-beige">
+
+          <div className="counter mb-4 flex font-saira text-xl gap-3 justify-center border-b-1 border-black">
           {/* <img src={application} alt="" /> */}
-          <p className='my-auto'>Applications: {applicationData.length}</p>
+          {/* <p className='my-auto'>Applications: {applicationData.length}</p> */}
+          <p className='my-auto'>Applications: 76</p>
           {/* <img src={rejection} alt="" /> */}
-          <p className='my-auto'>Rejections: 1</p>
+          <p className='my-auto pb-'>Rejections: 4</p>
         </div>
 
       {applicationData.map(data => (
-        <div key={data.id} className="flex items-center mb-4 border-b-2">
-          <img src={personPost[0].pic} alt="Profile" className="w-12 h-12 rounded-full mr-4" />
+        <div key={data.id} className="flex items-center mb-4 border p-3 bg-slate-200 rounded-lg">
+          {/* <img src={personPost[0].pic} alt="Profile" className="w-12 h-12 rounded-full mr-4" /> */}
           <div>
             {/* <h3 className="font-bold">{personPost[0].name}</h3> */}
-            <p className="text-gray-600 mb-2">
-              Company Name: <span className="ml-10 font-saira"></span>{data.companyName}
+            <p className="text-gray-600 font-saira text-lg mb-2">
+              {data.companyName}
             </p>
             <p className="text-gray-600 mb-2">
               Date Applied: <span className="ml-12"></span>{new Date(data.dateApplied * 1000).toLocaleString()}

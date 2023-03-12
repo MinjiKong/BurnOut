@@ -57,26 +57,29 @@ const handleUpload = () => {
   }, []);
 
   return (
-    <div className="flex justify-center mb-20">
-    <div className="profile p-4 bg-slate-200 m-2 flex flex-col">
+    <div className="profile p-4 bg-slate-200 m-2 h-screen flex flex-col">
+
       <h2 className="font-bold text-dark-navy text-center">Your Image</h2>
       <input className="ml-20" type="file" name="file" onChange={(e) => setPhotoUrl(e.target.value)} />
       {photoUrl && <img src={photoUrl} alt="Profile" /> }
+
       <button className="text-white text-ig bg-navy font-bold rounded-20 py-2 px-4 cursor-pointer" type="button" onClick={handleUpload}>Upload</button>
       <br></br>
       <h2 className="font-bold text-dark-navy ml-4">User name</h2>
       <div className="flex">
       <input type="text" id="name-input" className="profile-form" placeholder="Enter your full name" value={username} disabled={!isUsernameEditable} onChange={(e) => setUsername(e.target.value)}></input>
+
       {isUsernameEditable ? (
         <div className="m-auto flex gap-2">
           <button className="name-save font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="save" onClick={handleUserUpdate}>Save</button>
-          <button className="name-cancel font-bold font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="cancel" onClick={() => setIsUsernameEditable(false)}>Cancel</button>
+          <button className="name-cancel font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="cancel" onClick={() => setIsUsernameEditable(false)}>Cancel</button>
         </div>
       ) : (
         <div className="m-auto flex gap-2">
         <button className="name-edit font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="edit" onClick={() => setIsUsernameEditable(true)}>Edit</button>
         </div>
       )}
+
       </div>
       <h2 className="font-bold text-dark-navy ml-4">Email</h2>
       <div className="flex">
@@ -107,7 +110,7 @@ const handleUpload = () => {
       )}
      </div>
      </div>
-     </div>
+
   )
 }
 
