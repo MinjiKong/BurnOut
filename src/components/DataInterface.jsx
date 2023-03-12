@@ -4,7 +4,7 @@ import { getAnalytics } from "firebase/analytics";
 import { 
     getFirestore,
     query,
-    where, 
+    where,
     orderBy,
     onSnapshot,
     collection,
@@ -12,7 +12,7 @@ import {
     getDocs, 
     addDoc,
     updateDoc,
-    doc,
+    doc, 
     deleteDoc,
     setDoc,
     serverTimestamp, 
@@ -47,18 +47,35 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const db = getFirestore(app)
 const analytics = getAnalytics(app);
 
 
 // Authentication functions
-export const authenticateWithGoogle = () => {
+export const authenticateWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    return signInWithPopup(provider);
+    try {
+        const result = await signInWithPopup(auth, provider);
+        return result.user;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export const authenticateWithEmail = (email, password) => {
     return signInWithEmailAndPassword(email, password);
+}
+
+export const isLoggedIn = () => {
+    const user = getAuth().currentUser;
+    if (user) {
+        console.log("User is logged in");
+        return true;
+    } else {
+        console.log("User is not logged in");
+        return false;
+    }
 }
 
 export const logout = () => {
@@ -286,3 +303,5 @@ export const getCommunity = (communityId) => {
         console.log("Error getting document:", error);
     });
 }
+
+// profile functions
