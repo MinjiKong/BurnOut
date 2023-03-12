@@ -2,7 +2,8 @@ import React from 'react'
 import * as DataInterface from './DataInterface'
 import {useState, useEffect} from 'react';
 import { JobPositions } from './DataInterface';
-// import { BrowserRouter, useHistory } from 'react-router-dom'; 
+// import { userNavigate } from "react-router-dom";
+// import { useHistory } from 'react-router-dom';
 
 
 function ApplicationForm() {
@@ -21,6 +22,8 @@ function ApplicationForm() {
   const { v4: uuidv4 } = require('uuid');
 
   const jobPosition = JobPositions;
+
+  // let navigate = useNavigate();
 
   //function to set the days
   const days = [];
@@ -74,12 +77,13 @@ function ApplicationForm() {
       applicationStatus: applicationStatus,
       jobPosition: position,
       comments: comments,
-      communityID: communityID
+      communityID: communityID,
+      userID: DataInterface.getUserID()
     }
     
     DataInterface.createApplication(applicationData);
 
-    window.location.href ='/';
+    // history.push('/');
     
   }
 
@@ -118,7 +122,7 @@ function ApplicationForm() {
 
   <div className="form-row">
     <div className="form-label">Application Status</div>
-    <select id="applicationStatus" value={position} onChange={(e) => setApplicationStatus(e.target.value)} style={{ height: "50px", backgroundColor: "#F5F8FA", border: "none", borderRadius: "9999px", padding: "0 20px" }}>
+    <select id="applicationStatus" value={applicationStatus} onChange={(e) => setApplicationStatus(e.target.value)} style={{ height: "50px", backgroundColor: "#F5F8FA", border: "none", borderRadius: "9999px", padding: "0 20px" }}>
       <option value="">Choose Application Status</option>
       {statusOptions.map((option) =>(
         <option key={option.value} value={option.value}>{option.label}</option>
