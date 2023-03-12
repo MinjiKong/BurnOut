@@ -30,6 +30,7 @@ import {
     sendPasswordResetEmail,
 
 } from "firebase/auth";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -48,6 +49,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
+const storage = getStorage(app);
 const analytics = getAnalytics(app);
 
 
@@ -138,21 +140,21 @@ export const updateApplication = (applicationData) => {
     });
 }
 
-export const getApplications = () => {
-    const applicationsColRef = collection(db, "applications");
-    const applicationsQuery = query(applicationsColRef, orderBy("dateApplied", "desc"));
-    return onSnapshot(applicationsQuery, (querySnapshot) => {
-        const applications = [];
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            applications.push({
-                id: doc.id,
-                ...doc.data()
-            });
-        });
-        return applications;
-    });
-}
+// export const getApplications = () => {
+//     const applicationsColRef = collection(db, "applications");
+//     const applicationsQuery = query(applicationsColRef, orderBy("dateApplied", "desc"));
+//     return onSnapshot(applicationsQuery, (querySnapshot) => {
+//         const applications = [];
+//         querySnapshot.forEach((doc) => {
+//             // doc.data() is never undefined for query doc snapshots
+//             applications.push({
+//                 id: doc.id,
+//                 ...doc.data()
+//             });
+//         });
+//         return applications;
+//     });
+// }
 
 export const getCommunityApplications = (communityID) => {
     const applicationsColRef = collection(db, "applications");
@@ -204,6 +206,7 @@ export const addUser = (user) => {
         email: user.email,
         userName: user.userName,
         communityID: user.communityID,
+        imageUrl: ""
     }).then(() => {
         console.log("Document successfully written!");
     }
@@ -219,7 +222,7 @@ export const updateUser = (user) => {
         email: user.email,
         userName: user.userName,
         communityID: user.communityID,
-        image: user.image
+        imageUrl: user.imageUrl
     }).then(() => {
         console.log("Document successfully updated!");
     }
@@ -234,6 +237,7 @@ export const getUser = (userId) => {
         userName: "test",
         email: "test@test.com",
         communityID: "test community",
+        imageUrl: ""
     }
     // const userRef = doc(db, "users", userId);
     // return getDoc(userRef).then((doc) => {
@@ -246,6 +250,24 @@ export const getUser = (userId) => {
     // }).catch((error) => {
     //     console.log("Error getting document:", error);
     // });
+}
+
+export const uploadUserImage = (image) => {
+    var userId = getUserID();
+    const storageRef = ref(storage, `users/${userId}/profileImage`);
+    return uploadBytes(storageRef, image).then((snapshot) => {
+        console.log('Uploaded a blob or file!');
+    });
+}
+
+export const getUserImage = () => {
+    var userId = getUserID();
+    const storageRef = ref(storage, `users/${userId}/profileImage`);
+    return getDownloadURL(storageRef).then((url) => {
+        return url;
+    }).catch((error) => {
+        console.log(error);
+    });
 }
 
 // community functions

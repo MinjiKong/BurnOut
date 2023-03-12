@@ -33,20 +33,19 @@ function App() {
 
   
   return (
-    // <div className="App bg-beige">
-    //     {/* <Router>   */}
-    //       <Header text={text}/>
-    //       <Routes>
-    //         <Route path='/' element={<ApplicationsView/>}></Route>
-    //         {/* <Route path="/login" element={<Login/>}></Route> */}
-    //         <Route path="/community" element={<CommunityView />}></Route>
-    //         {/* <Route path='/settings' element={<Settings />}></Route> */}
-    //         <Route path='/leaderboard' element={<LeaderboardView />}></Route>
-    //       </Routes>
-    //       <Navbar />
-    //     {/* </Router> */}
-    //   </div>
-    <ProfileView/>
+    <div className="App bg-beige">
+        {/* <Router>   */}
+          <Header text={text}/>
+          <Routes>
+            <Route path='/' element={<ApplicationsView/>}></Route>
+            {/* <Route path="/login" element={<Login/>}></Route> */}
+            <Route path="/community" element={<CommunityView />}></Route>
+            {/* <Route path='/settings' element={<Settings />}></Route> */}
+            <Route path='/leaderboard' element={<LeaderboardView />}></Route>
+          </Routes>
+          <Navbar />
+        {/* </Router> */}
+      </div>
   )
 }
 
