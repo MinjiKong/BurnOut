@@ -38,7 +38,6 @@ function App() {
         {/* <Router>   */}
           <Header text={text}/>
           <Routes>
-          
             <Route path='/' element={<ApplicationsView/>}></Route>
             {/* <Route path="/login" element={<Login/>}></Route> */}
             <Route path="/community" element={<CommunityView />}></Route>
