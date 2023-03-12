@@ -49,6 +49,8 @@ function App() {
                 <Route path="/community" element={<CommunityView />}></Route>
 
                 <Route path='/leaderboard' element={<LeaderboardView />}></Route>
+
+                <Route path='/applicationform' element={<ApplicationForm/>}></Route>
             </Routes>
           <Navbar />
 
