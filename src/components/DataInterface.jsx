@@ -141,6 +141,7 @@ export const createApplication = (applicationData) => {
         comments: applicationData.comments,
         communityID: applicationData.communityID,
         userID: applicationData.userID,
+        // username: applicationData.username,
     }).then((newApplicationRef) => {
         console.log("Document written with ID: ", newApplicationRef.id);
     }).catch((error) => {

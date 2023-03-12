@@ -78,8 +78,10 @@ function ApplicationForm() {
       jobPosition: position,
       comments: comments,
       communityID: communityID,
-      userID: DataInterface.getUserID()
+      userID: DataInterface.getUserID(),
+      // username: DataInterface.getUser().userName,
     }
+    console.log(DataInterface.getUser().userName)
     
     DataInterface.createApplication(applicationData);
 
