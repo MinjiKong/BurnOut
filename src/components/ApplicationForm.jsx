@@ -2,6 +2,7 @@ import React from 'react'
 import * as DataInterface from './DataInterface'
 import {useState, useEffect} from 'react';
 import { JobPositions } from './DataInterface';
+// import { BrowserRouter, useHistory } from 'react-router-dom'; 
 
 
 function ApplicationForm() {
@@ -57,6 +58,8 @@ function ApplicationForm() {
     { value: 'accepted', label: 'Accepted' },
   ];
 
+  // const history = useHistory();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -75,6 +78,8 @@ function ApplicationForm() {
     }
     
     DataInterface.createApplication(applicationData);
+
+    window.location.href ='/';
     
   }
 
