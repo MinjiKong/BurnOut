@@ -1,21 +1,21 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import {
+import { 
     getFirestore,
     query,
     where,
     orderBy,
     onSnapshot,
     collection,
-    getDoc,
-    getDocs,
+    getDoc, 
+    getDocs, 
     addDoc,
     updateDoc,
-    doc,
+    doc, 
     deleteDoc,
     setDoc,
-    serverTimestamp,
+    serverTimestamp, 
     arrayUnion
 } from "firebase/firestore";
 import {
@@ -272,6 +272,25 @@ export const getUser = () => {
             console.log("No such document!");
         }
     }).catch((error) => {
+        console.log("Error getting document:", error);
+    }
+    );
+};
+
+export const uploadUserImage = (image) => {
+    var userId = getUserID();
+    const storageRef = ref(storage, `users/${userId}/profileImage`);
+    return uploadBytes(storageRef, image).then((snapshot) => {
+        console.log('Uploaded a blob or file!');
+    });
+}
+
+export const getUserImage = () => {
+    var userId = getUserID();
+    const storageRef = ref(storage, `users/${userId}/profileImage`);
+    return getDownloadURL(storageRef).then((url) => {
+        return url;
+    }).catch((error) => {
         console.log(error);
     });
 }
@@ -321,4 +340,3 @@ export const getCommunity = (communityId) => {
     });
 }
 
-// profile functions
