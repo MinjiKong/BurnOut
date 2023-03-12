@@ -2,11 +2,13 @@ import React from 'react'
 import * as DataInterface from './DataInterface'
 import {useState, useEffect} from 'react';
 import { JobPositions } from './DataInterface';
+import { useNavigate } from "react-router-dom";
 // import { userNavigate } from "react-router-dom";
 // import { useHistory } from 'react-router-dom';
 
 
 function ApplicationForm() {
+    const navigate = useNavigate();
 
   //Date Variable
   const [day, setDay] = useState(new Date().getDate());
@@ -84,6 +86,7 @@ function ApplicationForm() {
     console.log(DataInterface.getUser().userName)
     
     DataInterface.createApplication(applicationData);
+    navigate('/');
 
     // history.push('/');
     
