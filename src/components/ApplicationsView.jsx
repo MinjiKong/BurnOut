@@ -58,6 +58,13 @@ function ApplicationsView() {
 
   return (
     <div className="rounded-lg shadow p-10 h-full bg-beige">
+          <div className="counter flex font-saira text-xl gap-3 justify-center border-b-1 border-black">
+          {/* <img src={application} alt="" /> */}
+          <p className='my-auto'>Applications: {applicationData.length}</p>
+          {/* <img src={rejection} alt="" /> */}
+          <p className='my-auto'>Rejections: 1</p>
+        </div>
+
       {applicationData.map(data => (
         <div key={data.id} className="flex items-center mb-4 border-b-2">
           <img src={personPost[0].pic} alt="Profile" className="w-12 h-12 rounded-full mr-4" />

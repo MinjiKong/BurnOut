@@ -58,6 +58,7 @@ function CommunityView() {
   return (
     <div className='h-screen'>
       <div className='flex flex-col gap-5 my-5' >
+        {/* Counter */}
         <div className="counter flex font-saira text-xl gap-3 justify-center border-b-1 border-black">
           {/* <img src={application} alt="" /> */}
           <p className='my-auto'>Applications: 1320</p>
