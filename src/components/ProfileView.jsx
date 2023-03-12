@@ -68,47 +68,22 @@ function ProfileView() {
     setUsername(data.userName)
     setEmail(data.email)
     setCommunityID(data.communityID)
-    setPhotoUrl(data.image)
+    DataInterface.getUserImage().then((url) => {
+      setPhotoUrl(url);
+    });
   }
 
 const handleUpload = () => {
   const file = document.querySelector('input[type="file"]').files[0];
   DataInterface.uploadUserImage(file).then((snap) => {
-    DataInterface.getUserImage("TbqmMiQEg5asd7SI27Jwm49uia22").then((url) => {
+    DataInterface.getUserImage().then((url) => {
       console.log(url);
       setPhotoUrl(url);
     }) 
-    // console.log('Download URL:', url);
-    // setPhotoUrl(url);
-    // DataInterface.updateUser({ 
-    //   id: "TbqmMiQEg5asd7SI27Jwm49uia22",
-    //   userName: username,
-    //   email: email,
-    //   communityID: communityID,
-    //   imageUrl: url 
-    // }).catch((error) => {
-    //   console.error('Error updating user:', error);
-    // });
   })
   .catch((error) => {
     console.error('Error uploading file:', error);
   });
-  // const storageRef = firebase.storage().ref();
-  // const fileRef = storageRef.child(`users/${image}/profile.jpg`);
-
-  // fileRef.put(file)
-  //   .then(() => {
-  //     console.log('File uploaded successfully.');
-  //     return fileRef.getDownloadURL();
-  //   })
-  //   .then((url) => {
-  //     console.log('Download URL:', url);
-  //     setPhotoUrl(url);
-  //     return DataInterface.updateUser({ photoUrl: url });
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error uploading file:', error);
-  //   });
 };
   
   useEffect(() => {
