@@ -67,16 +67,27 @@
         justify-content: space-between;
         margin-top: 1rem;
     }
+
+    .button-row button {
+        background-color: black;
+        color: white;
+        font-size: 15px;
+        padding: 10px 40px;
+        border-radius: 15px;
+        margin: 10px 0px;
+        cursor: pointer;
+        
+      }
       
     .button-row button:first-child {
         margin-right: auto;
-        margin-left: 100px;
+        
     }
       
     .button-row button:last-child {
-        margin-right: 100px;
+
         margin-left: auto;
-        
+
     }
 
 /* } */
