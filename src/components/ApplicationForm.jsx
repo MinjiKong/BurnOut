@@ -80,7 +80,7 @@ function ApplicationForm() {
 
   return (
     
-<form onSubmit={handleSubmit} className="form-container" style={{ maxWidth: "600px"}}>
+<form onSubmit={handleSubmit} className="h-screen m-2 p-2 ">
   <div className="form-row">
     <div className="form-label">Company Name</div>
     <input type="text" id="companyName" placeholder="Enter company name" value={companyName} onChange={(e) => setCompanyName(e.target.value)}  style={{ height: "50px", backgroundColor: "#F5F8FA", border: "none", borderRadius: "9999px", padding: "0 20px" }} />
