@@ -48,7 +48,6 @@ function App() {
   return (
     <div className="App bg-beige">
 
-          <Header text={text}/>
           <Routes>
             {/* <Route path='/' element={<LoginView/>}></Route> */}
             {/* <Route path='/' element={<ApplicationsView/>}></Route> */}
@@ -60,7 +59,9 @@ function App() {
               path="/"
               element={
                   <RequireAuth>
+                    <Header text={text}/>
                     <ApplicationsView />
+                    <Navbar />
                   </RequireAuth>
               }
             />
@@ -68,7 +69,11 @@ function App() {
               path="/community"
               element={
                   <RequireAuth>
+                                        <Header text={text}/>
+
                     <CommunityView />
+                    <Navbar />
+
                   </RequireAuth>
               }
             />
@@ -76,7 +81,11 @@ function App() {
               path="/leaderboard"
               element={
                   <RequireAuth>
+                                        <Header text={text}/>
+
                     <LeaderboardView />
+                    <Navbar />
+
                   </RequireAuth>
               }
             />
@@ -84,7 +93,11 @@ function App() {
               path="/profile"
               element={
                   <RequireAuth>
+                                        <Header text={text}/>
+
                     <ProfileView />
+                    <Navbar />
+
                   </RequireAuth>
               }
             />
@@ -92,7 +105,11 @@ function App() {
               path="/applicationform"
               element={
                   <RequireAuth>
+                                        <Header text={text}/>
+
                     <ApplicationForm />
+                    <Navbar />
+
                   </RequireAuth>
               }
             />
@@ -114,7 +131,6 @@ function App() {
             />
 
           </Routes>
-          <Navbar />
 
       </div>
   )
