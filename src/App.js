@@ -6,15 +6,17 @@ import SignUpView from "./components/SignUpView";
 import ApplicationForm from './components/ApplicationForm';
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import LeaderboardView from "./components/LeaderboardView";
-import { useLocation } from "react-router-dom";
-// import './App.css'
 
 function App() {
   const location = useLocation();
-  const [headerText, setHeader] = useState("Burn Out");
-  console.log(location.pathname)
+  const [isLogin, setIsLogin] = useState(false);
+  const handleLogin = () => {
+    setIsLogin(true);
+  }
+
 
   var text = "Burn Out"
   switch (location.pathname) {
@@ -35,20 +37,21 @@ function App() {
   
   return (
     <div className="App bg-beige">
-        {/* <Router>   */}
+
           <Header text={text}/>
-          <Routes>
-          
-            <Route path='/' element={<ApplicationsView/>}></Route>
-            {/* <Route path="/login" element={<Login/>}></Route> */}
-            <Route path="/community" element={<CommunityView />}></Route>
-            {/* <Route path='/settings' element={<Settings />}></Route> */}
-            <Route path='/leaderboard' element={<LeaderboardView />}></Route>
-            <Route path='/applicationForm' element={<ApplicationForm/>}></Route>
-          </Routes>
-        
+            <Routes>
+              
+              {/* <Route path='/login' element={<LoginView handleLogin={handleLogin}/>}></Route> */}
+              {/* <Route path='/signup' element={<SignUpView />}></Route> */}
+
+                <Route path='/' element={<ApplicationsView/>}></Route>
+
+                <Route path="/community" element={<CommunityView />}></Route>
+
+                <Route path='/leaderboard' element={<LeaderboardView />}></Route>
+            </Routes>
           <Navbar />
-        {/* </Router> */}
+
       </div>
   )
 }
