@@ -16,7 +16,8 @@ import {
     deleteDoc,
     setDoc,
     serverTimestamp, 
-    arrayUnion
+    arrayUnion,
+    increment,
 } from "firebase/firestore";
 import {
     GoogleAuthProvider,
@@ -185,21 +186,33 @@ export const getApplications = async (userID) => {
     return applicationsRet;
   };
 
-export const getCommunityApplications = (communityID) => {
+export const getCommunityApplications = (communityID = "0Km4CwF0nULxl1qtpyuB") => {
     const applicationsColRef = collection(db, "applications");
     const communityApplicationsQuery = query(applicationsColRef, where("communityID", "==", communityID), orderBy("dateApplied", "desc"));
-    return onSnapshot(communityApplicationsQuery, (querySnapshot) => {
-        const applications = [];
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            applications.push({
-                id: doc.id,
-                ...doc.data()
-            });
+
+    const querySnapshot = getDocs(communityApplicationsQuery);
+    const applications = [];
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        applications.push({
+            id: doc.id,
+            ...doc.data()
         });
-        return applications;
     });
+    return applications;
 }
+//     return onSnapshot(communityApplicationsQuery, (querySnapshot) => {
+//         const applications = [];
+//         querySnapshot.forEach((doc) => {
+//             // doc.data() is never undefined for query doc snapshots
+//             applications.push({
+//                 id: doc.id,
+//                 ...doc.data()
+//             });
+//         });
+//         return applications;
+//     });
+// }
 
 export const streamCommunityApplications = (communityID, callback) => {
     // const userRef = doc(db, "users", getUserID());
@@ -237,6 +250,8 @@ export const addUser = (user) => {
         email: user.email,
         userName: user.displayName,
         communityID: user.communityID || "0Km4CwF0nULxl1qtpyuB",
+        submittedAppCount: 0,
+        rejectedAppCount: 0,
     }).then(() => {
         console.log("Document successfully written!");
     }
@@ -244,6 +259,20 @@ export const addUser = (user) => {
         console.error("Error writing document: ", error);
     }
     );
+}
+
+export const incrementSubmittedAppCount = () => {
+    const userId = getUserID();
+    const userRef = doc(db, "users", userId);
+    return updateDoc(userRef, {
+        submittedAppCount: increment(1),
+    }).then(() => {
+        console.log("Document successfully updated!");
+    }
+    ).catch((error) => {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error);
+    });
 }
 
 export const updateUser = (user) => {
@@ -285,9 +314,11 @@ export const uploadUserImage = (image) => {
     });
 }
 
-export const getUserImage = () => {
-    var userId = getUserID();
-    const storageRef = ref(storage, `users/${userId}/profileImage`);
+export const getUserImage = (userID) => {
+    if (!userID) {
+        userID = getUserID();
+    }
+    const storageRef = ref(storage, `users/${userID}/profileImage`);
     return getDownloadURL(storageRef).then((url) => {
         return url;
     }).catch((error) => {
