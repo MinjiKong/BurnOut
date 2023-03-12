@@ -32,6 +32,7 @@ function App() {
       break;
     case '/profile':
       text = "Profile"
+      break;
     default:
       text = "Burn Out"
       break;

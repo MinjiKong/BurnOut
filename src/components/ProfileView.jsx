@@ -1,36 +1,4 @@
-// import React from 'react'
-// import "../profile.css"
-
-// function ProfileView() {
-//   return (
-//     <div className="profile">
-//       <h2>Select image</h2>
-//       <input type="file" name='file' onChange={(e) => this.handleFile(e)} />
-//       <button className="buttons" type="button" onClick={(e)=>this.handleUpload(e)}>Upload</button>
-//       <h2>NAME</h2>
-//       <input type="text" id="name-input" class="profile-form" placeholder="Enter your full name" disabled/>
-//       <button className="buttons" type="button" id="name-edit" class="profile-button" onclick="">Edit</button>
-//       <button className="buttons" type="button" id="name-save" class="profile-button" onclick="">Save</button>
-  
-//       <h2>EMAIL ADDRESS</h2>
-//       <input type="text" id="email-input" class="profile-form" placeholder="Enter your email" disabled/>
-//       <button className="buttons" type="button" id="email-edit" class="profile-button" onclick="">Edit</button>
-//       <button className="buttons" type="button" id="email-save" class="profile-button" onclick="">Save</button>
-
-//       <h2>PASSWORD</h2>
-//       <input type="password" id="password-input" class="profile-form" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" disabled/>
-//       <button className="buttons" type="button" id="password-edit" class="profile-button" onclick="">Edit</button>
-//       <button className="buttons" type="button" id="password-save" class="profile-button" onclick="">Save</button>
-//     </div>
-            
-  
-//   )
-// }
-
-// export default ProfileView
-
 import React, { useState, useEffect } from 'react';
-import '../profile.css';
 import * as DataInterface from './DataInterface'
 
 
@@ -39,7 +7,6 @@ function ProfileView() {
   const [email, setEmail] = useState('');
   const [communityID, setCommunityID] = useState('');
   const [photoUrl, setPhotoUrl] = useState(null);
-  const [isEditable, setIsEditable] = useState(false);
   const [isUsernameEditable, setIsUsernameEditable] = useState(false);
   const [isEmailEditable, setIsEmailEditable] = useState(false);
   const [isCommunityIDEditable, setIsCommunityIDEditable] = useState(false);
@@ -90,44 +57,57 @@ const handleUpload = () => {
   }, []);
 
   return (
-    <div className="profile">
-      <h2>Select image</h2>
-      <input type="file" name="file" onChange={(e) => setPhotoUrl(e.target.value)} />
+    <div className="flex justify-center mb-20">
+    <div className="profile p-4 bg-slate-200 m-2 flex flex-col">
+      <h2 className="font-bold text-dark-navy text-center">Your Image</h2>
+      <input className="ml-20" type="file" name="file" onChange={(e) => setPhotoUrl(e.target.value)} />
       {photoUrl && <img src={photoUrl} alt="Profile" /> }
-      <button className="buttons" type="button" onClick={handleUpload}>Upload</button>
-
-      <h2>UserName</h2>
+      <button className="text-white text-ig bg-navy font-bold rounded-20 py-2 px-4 cursor-pointer" type="button" onClick={handleUpload}>Upload</button>
+      <br></br>
+      <h2 className="font-bold text-dark-navy ml-4">User name</h2>
+      <div className="flex">
       <input type="text" id="name-input" className="profile-form" placeholder="Enter your full name" value={username} disabled={!isUsernameEditable} onChange={(e) => setUsername(e.target.value)}></input>
       {isUsernameEditable ? (
-        <div>
-          <button className="name-save" type="save" onClick={handleUserUpdate}>Save</button>
-          <button className="name-cancel" type="cancel" onClick={() => setIsUsernameEditable(false)}>Cancel</button>
+        <div className="m-auto flex gap-2">
+          <button className="name-save font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="save" onClick={handleUserUpdate}>Save</button>
+          <button className="name-cancel font-bold font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="cancel" onClick={() => setIsUsernameEditable(false)}>Cancel</button>
         </div>
       ) : (
-        <button className="name-edit" type="edit" onClick={() => setIsUsernameEditable(true)}>Edit</button>
+        <div className="m-auto flex gap-2">
+        <button className="name-edit font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="edit" onClick={() => setIsUsernameEditable(true)}>Edit</button>
+        </div>
       )}
-      <h2>Email</h2>
+      </div>
+      <h2 className="font-bold text-dark-navy ml-4">Email</h2>
+      <div className="flex">
       <input type="text" id="email-input" className="profile-form" placeholder="Enter your email" value={email} disabled={!isEmailEditable} onChange={(e) => setEmail(e.target.value)}></input>
       {isEmailEditable ? (
-        <div>
-          <button className="email-save" type="save" onClick={handleUserUpdate}>Save</button>
-          <button className="email-cancel" type="cancel" onClick={() => setIsEmailEditable(false)}>Cancel</button>
+        <div className="m-auto flex gap-2">
+          <button className="email-save font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="save" onClick={handleUserUpdate}>Save</button>
+          <button className="email-cancel font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="cancel" onClick={() => setIsEmailEditable(false)}>Cancel</button>
         </div>
       ) : (
-        <button className="email-edit" type="edit" onClick={() => setIsEmailEditable(true)}>Edit</button>
+        <div className="m-auto flex gap-2">
+        <button className="email-edit font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="edit" onClick={() => setIsEmailEditable(true)}>Edit</button>
+        </div>
       )}
-      <h2>Community ID</h2>
+      </div>
+      <h2 className="font-bold text-dark-navy ml-4">Community ID</h2>
+      <div className="flex">
       <input type="text" id="communityID-input" className="profile-form" placeholder="Enter your community ID" value={communityID} disabled={!isCommunityIDEditable} onChange={(e) => setCommunityID(e.target.value)}></input>
       {isCommunityIDEditable ? (
-        <div>
-          <button className="communityID-save" type="save" onClick={handleUserUpdate}>Save</button>
-          <button className="communityID-cancel" type="cancel" onClick={() => setIsCommunityIDEditable(false)}>Cancel</button>
+        <div className="m-auto flex gap-2">
+          <button className="communityID-save font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="save" onClick={handleUserUpdate}>Save</button>
+          <button className="communityID-cancel font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="cancel" onClick={() => setIsCommunityIDEditable(false)}>Cancel</button>
         </div>
       ) : (
-        <button className="communityID-edit" type="edit" onClick={() => setIsCommunityIDEditable(true)}>Edit</button>
+        <div className="m-auto flex gap-2">
+        <button className="communityID-edit font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="edit" onClick={() => setIsCommunityIDEditable(true)}>Edit</button>
+        </div>
       )}
      </div>
-     
+     </div>
+     </div>
   )
 }
 
