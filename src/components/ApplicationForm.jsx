@@ -105,7 +105,7 @@ function ApplicationForm() {
       </div>
 
       <div className="date-row">
-        <label htmlFor="date">Date Applied:</label>
+        <label htmlFor="date" style={{color: 'black'}}>Date Applied:</label>
         <div>
           <select id="day" value={day} onChange={(e) => setDay(e.target.value)} style={{backgroundColor: "#C1A1D3", marginRight: "5px"}}>
             {days}

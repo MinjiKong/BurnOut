@@ -4,26 +4,6 @@
 
 
 
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-  }
-  
-  @media screen and (min-width: 768px) {
-    .form-grid {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-  } */
-
-
-
 /* @media screen and (max-width: 1200px) { */
     input::placeholder {
         color: black;
@@ -62,7 +42,6 @@
     
     .date-row {
         display: flex;
-        /* justify-content: space-between; */
         margin-top: 1rem;
     }
     

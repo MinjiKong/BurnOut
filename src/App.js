@@ -3,6 +3,7 @@ import ApplicationsView from "./components/ApplicationsView";
 import CommunityView from "./components/CommunityView";
 import LoginView from "./components/LoginView";
 import SignUpView from "./components/SignUpView";
+import ApplicationForm from './components/ApplicationForm';
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from "./components/Header";
@@ -43,6 +44,7 @@ function App() {
             <Route path="/community" element={<CommunityView />}></Route>
             {/* <Route path='/settings' element={<Settings />}></Route> */}
             <Route path='/leaderboard' element={<LeaderboardView />}></Route>
+            <Route path='/applicationForm' element={<ApplicationForm/>}></Route>
           </Routes>
         
           <Navbar />
