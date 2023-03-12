@@ -57,7 +57,7 @@ function ApplicationsView() {
   return (
 <div className="rounded-lg shadow p-10 max-h-screen bg-beige">
   {applicationData.map(data => (
-    <div key={data.id} className="flex items-center mb-4 ">
+    <div key={data.id} className="flex items-center mb-4 border-b-2 shadow-b-2">
       <img src={personPost[0].pic} alt="Profile" className="w-12 h-12 rounded-full mr-4"/>
       <div>
         {/* <h3 className="font-bold">{personPost[0].name}</h3> */}
