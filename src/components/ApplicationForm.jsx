@@ -65,7 +65,7 @@ function ApplicationForm() {
 
   // const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const date = new Date(`${year}-${month}-${day}`);
@@ -81,15 +81,15 @@ function ApplicationForm() {
       comments: comments,
       communityID: communityID,
       userID: DataInterface.getUserID(),
-      // username: DataInterface.getUser().userName,
+      username: await DataInterface.getUser().userName,
     }
-    console.log(DataInterface.getUser().userName)
+    console.log(DataInterface.getUser())
     
-    DataInterface.createApplication(applicationData);
+    await DataInterface.createApplication(applicationData).then((response) => {
+      console.log(response);
+    });
+    await DataInterface.incrementSubmittedAppCount();
     navigate('/');
-
-    // history.push('/');
-    
   }
 
   return (
