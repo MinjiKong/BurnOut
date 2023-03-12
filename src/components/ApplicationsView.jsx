@@ -4,6 +4,8 @@ import * as DataInterface from './DataInterface'
 function ApplicationsView() {
 
   const [applicationData, setApplicationData] = useState([]);
+  const [appCounter, setAppCounter] = useState(0)
+  const [rejCounter, setRejCounter] = useState(0)
 
   const userID = DataInterface.getUserID();
 
@@ -26,7 +28,7 @@ function ApplicationsView() {
 
   // console.log(applicationData.jobPosition);
 
-  
+
 
 
   const personPost = [
@@ -55,40 +57,40 @@ function ApplicationsView() {
   };
 
   return (
-<div className="rounded-lg shadow p-10 max-h-screen bg-beige">
-  {applicationData.map(data => (
-    <div key={data.id} className="flex items-center mb-4 border-b-2 shadow-b-2">
-      <img src={personPost[0].pic} alt="Profile" className="w-12 h-12 rounded-full mr-4"/>
-      <div>
-        {/* <h3 className="font-bold">{personPost[0].name}</h3> */}
-        <p className="text-gray-600 mb-2">
-          Company Name: <span className="ml-10 font-saira"></span>{data.companyName}
-        </p>
-        <p className="text-gray-600 mb-2">
-          Date Applied: <span className="ml-12"></span>{new Date(data.dateApplied*1000).toLocaleString()}
-        </p>
-        <p className="text-gray-600 mb-2">
-          Applications Status: <span className="ml-10"></span>{data.applicationStatus}
-        </p>
-        <p className="text-gray-600 mb-2">
-          Job Position: <span className="ml-10"></span>{data.jobPosition}
-        </p>
-        <p className="text-gray-600 mb-0">
-          Comments: <span className="ml-10"></span>{data.comments}
-        </p>
-        {/* <hr className="h-2"></hr> */}
-      </div>
-    </div>
-    
+    <div className="rounded-lg shadow p-10 h-full bg-beige">
+      {applicationData.map(data => (
+        <div key={data.id} className="flex items-center mb-4 border-b-2">
+          <img src={personPost[0].pic} alt="Profile" className="w-12 h-12 rounded-full mr-4" />
+          <div>
+            {/* <h3 className="font-bold">{personPost[0].name}</h3> */}
+            <p className="text-gray-600 mb-2">
+              Company Name: <span className="ml-10 font-saira"></span>{data.companyName}
+            </p>
+            <p className="text-gray-600 mb-2">
+              Date Applied: <span className="ml-12"></span>{new Date(data.dateApplied * 1000).toLocaleString()}
+            </p>
+            <p className="text-gray-600 mb-2">
+              Applications Status: <span className="ml-10"></span>{data.applicationStatus}
+            </p>
+            <p className="text-gray-600 mb-2">
+              Job Position: <span className="ml-10"></span>{data.jobPosition}
+            </p>
+            <p className="text-gray-600 mb-0">
+              Comments: <span className="ml-10"></span>{data.comments}
+            </p>
+            {/* <hr className="h-2"></hr> */}
+          </div>
+        </div>
+
       ))}
 
 
-      
 
 
 
 
-  {/* <div className="flex items-center mb-2">
+
+      {/* <div className="flex items-center mb-2">
     <img
       src={personPost[0].pic}
       alt="Profile"
@@ -104,13 +106,13 @@ function ApplicationsView() {
       </p>
     </div>
   </div> */}
-  
-  {/* <div className="mb-4">
+
+      {/* <div className="mb-4">
     <p className="text-gray-700">{personPost[0].comment}</p>
   </div> */}
 
 
-  {/* <div className="mb-4">
+      {/* <div className="mb-4">
     {responses.map((r, index) => (
       <div key={index} className="flex items-start mb-4">
         <img
@@ -126,7 +128,7 @@ function ApplicationsView() {
       </div>
     ))}
   </div> */}
-  {/* <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
     <textarea
       placeholder="Post your reply"
       value={response}
@@ -137,7 +139,7 @@ function ApplicationsView() {
       POST
     </button>
   </form> */}
-</div>
+    </div>
   );
 }
 

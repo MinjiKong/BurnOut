@@ -1,10 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 function CommunityView() {
 
   const application = "../images/article.svg"
-  const rejection = "../images/rejected.svg"
+  const rejection =  "../images/rejected.svg"
+  const [appCounter, setAppCounter] = useState(0)
+  const [rejCounter, setRejCounter] = useState(0)
 
 
   const communityActivity = [
@@ -55,6 +58,12 @@ function CommunityView() {
   return (
     <div className='h-screen'>
       <div className='flex flex-col gap-5 my-5' >
+        <div className="counter flex font-saira text-xl gap-3 justify-center border-b-1 border-black">
+          {/* <img src={application} alt="" /> */}
+          <p className='my-auto'>Applications: 1320</p>
+          {/* <img src={rejection} alt="" /> */}
+          <p className='my-auto'>Rejections: 237</p>
+        </div>
         {communityActivity.map(({ id, link, pic, name, rejections, applications, datetime, comment }) => {
           return (
             // <Link className=' flex-col w-1/3' key={id} to={link}>
