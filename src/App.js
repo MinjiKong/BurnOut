@@ -49,7 +49,7 @@ function App() {
                 <Route path='/profile' element={<ProfileView/>}></Route>
 
 
-                <Route path="/community" element={<CommunityView />}></Route>
+                <Route path="/community" element={<CommunityView/>}></Route>
 
                 <Route path='/leaderboard' element={<LeaderboardView />}></Route>
 

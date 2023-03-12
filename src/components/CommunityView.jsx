@@ -49,7 +49,7 @@ function CommunityView() {
 
   return (
     <div className='h-screen'>
-          <div className='flex flex-col gap-5 my-5'>
+          <div className='flex flex-col gap-5 my-5' >
               {communityActivity.map(({ id, link, pic, name, rejections, applications, datetime, comment }) => {
                 return (
                   // <Link className=' flex-col w-1/3' key={id} to={link}>
