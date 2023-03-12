@@ -4,6 +4,7 @@ import { getAnalytics } from "firebase/analytics";
 import { 
     getFirestore,
     query,
+    where,
     orderBy,
     onSnapshot,
     collection,
@@ -228,17 +229,22 @@ export const updateUser = (user) => {
 }
 
 export const getUser = (userId) => {
-    const userRef = doc(db, "users", userId);
-    return getDoc(userRef).then((doc) => {
-        if (doc.exists()) {
-            return doc.data();
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
+    return {
+        userName: "test",
+        email: "test@test.com",
+        communityID: "test community",
+    }
+    // const userRef = doc(db, "users", userId);
+    // return getDoc(userRef).then((doc) => {
+    //     if (doc.exists()) {
+    //         return doc.data();
+    //     } else {
+    //         // doc.data() will be undefined in this case
+    //         console.log("No such document!");
+    //     }
+    // }).catch((error) => {
+    //     console.log("Error getting document:", error);
+    // });
 }
 
 // community functions
