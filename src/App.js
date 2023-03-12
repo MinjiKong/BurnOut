@@ -95,20 +95,7 @@ function App() {
               }
             />
 
-<<<<<<< HEAD
-                <Route path='/' element={<ApplicationsView/>}></Route>
-                <Route path='/profile' element={<ProfileView/>}></Route>
-
-
-                <Route path="/community" element={<CommunityView/>}></Route>
-
-                <Route path='/leaderboard' element={<LeaderboardView />}></Route>
-
-                <Route path='/applicationform' element={<ApplicationForm/>}></Route>
-            </Routes>
-=======
           </Routes>
->>>>>>> e3754ba392203c09303714315e01730698baa139
           <Navbar />
 
       </div>
