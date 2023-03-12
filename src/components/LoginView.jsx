@@ -47,17 +47,6 @@ function LoginView(props) {
 
       {/* <header className="google-header"> */}
       {/* </header> */}
-
-        <form className="flex flex-col bg-dark-navy" onSubmit={handleSubmit}>
-          <label htmlfor="email">Email </label>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" name="email"></input>
-          <label htmlfor="password">Password </label>
-          <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter password"name="password"></input>
-          <br></br>
-          <button className="login-button text-white text-15 font-bold border-none bg-1A508B py-20 px-20 rounded-10 cursor-pointer" type="submit">Log In</button>
-      </form>
-      <br></br>
-      <hr></hr>
       <GoogleButton
       className='mx-auto my-4'
           onClick={() => {
@@ -69,7 +58,18 @@ function LoginView(props) {
             });
           }}
         />
-      <button className="link-btn" onClick={() => navigate("/signup")}>Don't have an account? Register here.</button>
+
+        <form className="flex flex-col bg-dark-navy" onSubmit={handleSubmit}>
+          <label htmlfor="email">Email </label>
+          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" name="email"></input>
+          <label htmlfor="password">Password </label>
+          <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter password"name="password"></input>
+          <br></br>
+          <button className="login-button text-white text-15 font-bold border-none bg-1A508B py-20 px-20 rounded-10 cursor-pointer" type="submit">Log In</button>
+      </form>
+      <br></br>
+      <hr></hr>
+      <button className="link-btn text-white underline mt-3" onClick={() => navigate("/signup")}>Don't have an account? Register here.</button>
       </div>
     </div>
   )

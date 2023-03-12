@@ -76,7 +76,7 @@ function ApplicationsView() {
         <p className="text-gray-600 mb-0">
           Comments: <span className="ml-10"></span>{data.comments}
         </p>
-        <p>___________________________________________________________</p>
+        <hr className="divide-200"></hr>
       </div>
     </div>
     
