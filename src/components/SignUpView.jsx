@@ -16,9 +16,9 @@ function SignUpView(props){
       }
 
     return(
-        <div className="auth-form-container">
+      <div className="flex flex-col bg-dark-navy m-3">
         <header className="title">Burn Out</header>
-        <form className="signup-form" onSubmit={handleSubmit}>
+        <form className="flex flex-col bg-dark-navy" onSubmit={handleSubmit}>
             <label>Username</label>
             <input value={name} onChange={(e) => setName(e.target.value)} name="name" id="name" placeholder='Enter username'></input>
             <label htmlfor="email">Email </label>

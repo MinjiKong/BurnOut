@@ -40,8 +40,8 @@ function LoginView(props) {
   // )
 
   return (
-    <div className="signIn/Up">
-      <div className="auth-form-container">
+    <div className="flex flex-col bg-dark-navy">
+      <div className="flex flex-col bg-dark-navy">
       <header className="title">Burn Out</header>
       {/* <header className="google-header"> */}
         <GoogleButton
@@ -58,7 +58,7 @@ function LoginView(props) {
       <br></br>
       <h1>----------------------------OR----------------------------</h1>
       <br></br>
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="flex flex-col bg-dark-navy" onSubmit={handleSubmit}>
           <label htmlfor="email">Email </label>
           <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" name="email"></input>
           <label htmlfor="password">Password </label>
