@@ -30,6 +30,7 @@ import {
     sendPasswordResetEmail,
 
 } from "firebase/auth";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -49,6 +50,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app)
+const storage = getStorage(app);
 const analytics = getAnalytics(app);
 
 
@@ -172,14 +174,14 @@ export const getApplications = async (userID) => {
     const applicationsRet = [];
     const applicationsColRef = collection(db, "applications");
     const q = query(applicationsColRef, where("userID", "==", userID));
-    
+
     const querySnapshot = await getDocs(q);
-  
+
     querySnapshot.forEach((doc) => {
       applicationsRet.push(doc.data());
       console.log(doc.id, " => ", doc.data());
     });
-  
+
     return applicationsRet;
   };
 
@@ -271,6 +273,25 @@ export const getUser = () => {
         }
     }).catch((error) => {
         console.log("Error getting document:", error);
+    }
+    );
+};
+
+export const uploadUserImage = (image) => {
+    var userId = getUserID();
+    const storageRef = ref(storage, `users/${userId}/profileImage`);
+    return uploadBytes(storageRef, image).then((snapshot) => {
+        console.log('Uploaded a blob or file!');
+    });
+}
+
+export const getUserImage = () => {
+    var userId = getUserID();
+    const storageRef = ref(storage, `users/${userId}/profileImage`);
+    return getDownloadURL(storageRef).then((url) => {
+        return url;
+    }).catch((error) => {
+        console.log(error);
     });
 }
 
@@ -319,4 +340,3 @@ export const getCommunity = (communityId) => {
     });
 }
 
-// profile functions
