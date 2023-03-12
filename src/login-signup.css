@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
 
-.SignUpView, .LoginView {
+body {
     background-color: #0D335D;
     display: flex;
     min-height: 100vh;
