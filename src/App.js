@@ -3,20 +3,22 @@ import ApplicationsView from "./components/ApplicationsView";
 import CommunityView from "./components/CommunityView";
 import LoginView from "./components/LoginView";
 import SignUpView from "./components/SignUpView";
+import ApplicationForm from './components/ApplicationForm';
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import LeaderboardView from "./components/LeaderboardView";
 import { useLocation } from "react-router-dom";
 import * as DataInterface from './components/DataInterface'
-
-// import './App.css'
+import ProfileView from "./components/ProfileView";
 
 function App() {
   const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [headerText, setHeader] = useState("Burn Out");
-  console.log(location.pathname)
+  const [isLogin, setIsLogin] = useState(false);
+  const handleLogin = () => {
+    setIsLogin(true);
+  }
 
   var text = "Burn Out"
   switch (location.pathname) {
@@ -36,7 +38,7 @@ function App() {
 
   const RequireAuth = ({ children }) => {
     const userIsLogged = DataInterface.isLoggedIn();//useLoginStatus(); // Your hook to get login status
- 
+
     if (!userIsLogged) {
        return <LoginView />;
     }
@@ -44,7 +46,7 @@ function App() {
  };
   return (
     <div className="App bg-beige">
-        {/* <Router>   */}
+
           <Header text={text}/>
           <Routes>
             {/* <Route path='/' element={<LoginView/>}></Route> */}
@@ -77,10 +79,26 @@ function App() {
                   </RequireAuth>
               }
             />
+            <Route
+              path="/profile"
+              element={
+                  <RequireAuth>
+                    <ProfileView />
+                  </RequireAuth>
+              }
+            />
+            <Route
+              path="/applicationform"
+              element={
+                  <RequireAuth>
+                    <ApplicationForm />
+                  </RequireAuth>
+              }
+            />
+
           </Routes>
-        
           <Navbar />
-        {/* </Router> */}
+
       </div>
   )
 }
