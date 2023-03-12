@@ -55,35 +55,30 @@ function CommunityView() {
                   // <Link className=' flex-col w-1/3' key={id} to={link}>
                   
                   // Each card
-                  <div className=" mx-2 p-2 flex bg-lavendar rounded-lg" key={id}>
-                    {/* Image */}
-                    <div className="text-cente rounded-full max-w-md color-white">
-                      <object className="mx-auto my-auto" type="image/svg+xml" data={pic} alt={name}></object>
-                    </div>
+<div className="mx-10 p-2 flex bg-lavender rounded-lg shadow p-10" key={id}>
+  {/* Image */}
+  <div className="text-center rounded-full max-w-md color-white">
+    <object type="image/svg+xml" data={pic} alt={name}></object>
+  </div>
 
+  {/* Details */}
+  <div className="flex flex-col justify-center ml-5">
+    {/* Top row */}
+    <div className="flex flex-row justify-between mb-2">
+      <div className="text-md font-bold">{name}</div>
+      <div className="text-md">{datetime}</div>
+    </div>
 
-                    {/* Details */}
-                    <div className='flex flex-col justify-center ml-5 grow'>
-                      {/* Top row */}
-                      <div className='flex flex-row justify-between'>
-                        <div className='text-md font-bold'>{name}</div>
-                        <div className='text-md right-0'>{datetime}</div>
-                      </div>
+    {/* Content */}
+    <div className="text-md mb-2">{comment}</div>
 
-                      {/* Content */}
-                      <div className='text-md'>{comment}</div>
-
-                      {/* Stats */}
-                      <div className="flex flex-row gap-3">
-                        <div className='text-slate-200'>Applications: {applications}</div>
-                        <div className='text-slate-200'>Rejections: {rejections}</div>
-                      </div>
-
-                    </div>
-
-
-
-                  </div>
+    {/* Stats */}
+    <div className="flex flex-row gap-3">
+      <div className="text-black-slate-200">Applications: {applications}</div>
+      <div className="text-black-slate-200">Rejections: {rejections}</div>
+    </div>
+  </div>
+</div>
                   // </Link>
                 )
             })}
