@@ -85,15 +85,17 @@ function LeaderboardView() {
       <p className="text-4xl font-bold mt-10 text-center">Rankings</p>
   
       {/* People Ranking List */}
-      <div className="flex flex-col gap-4 mt-8 px-4">
+      <div className="flex flex-col gap-4 ml-20 pl-20">
         {/* Each card */}
         {sortedLeaderBoards.map(({ id, link, pic, name, rejections, applications, datetime, comment }, index) => {
           return (
-            <div className="bg-dark-gray-900 rounded-md flex gap-4 p-4" key={id}>
+            <div className="bg-dark-gray-900 rounded-md flex items-center gap-20 my-3" key={id}>
+              <p className="text-xl font-bold">{index + 1}</p>
               <div className="w-1/5 flex flex-col justify-center items-center">
-                <p className="text-xl font-bold">{index + 1}</p>
+                
                 <img className="w-20 h-20 object-cover rounded-full mt-2" src={pic} alt=""></img>
                 <p className="text-center mt-2">{name}</p>
+                
               </div>
               <div className="flex-grow flex items-center justify-between">
                 <div className="flex gap-2">
