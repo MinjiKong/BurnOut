@@ -30,9 +30,6 @@
 // export default ProfileView
 
 import React, { useState, useEffect } from 'react';
-// import firebase from 'firebase/app';
-// import 'firebase/storage';
-// import 'firebase/auth';
 import '../profile.css';
 import * as DataInterface from './DataInterface'
 
@@ -42,7 +39,10 @@ function ProfileView() {
   const [email, setEmail] = useState('');
   const [communityID, setCommunityID] = useState('');
   const [photoUrl, setPhotoUrl] = useState(null);
-  // const [pho
+  const [isEditable, setIsEditable] = useState(false);
+  const [isUsernameEditable, setIsUsernameEditable] = useState(false);
+  const [isEmailEditable, setIsEmailEditable] = useState(false);
+  const [isCommunityIDEditable, setIsCommunityIDEditable] = useState(false);
 
   const handleUserUpdate = (e) => {
     e.preventDefault();
@@ -51,10 +51,14 @@ function ProfileView() {
       email: email,
       userName: username,
       communityID: communityID,
+      image: photoUrl
     }
-
+    // setIsEditable(false);
+    setIsUsernameEditable(false);
+    setIsEmailEditable(false);
+    setIsCommunityIDEditable(false);
     DataInterface.updateUser(userData)
-    
+    getUserInfo();
   };
 
   const getUserInfo = () => {
@@ -64,102 +68,73 @@ function ProfileView() {
     setUsername(data.userName)
     setEmail(data.email)
     setCommunityID(data.communityID)
-    
+    setPhotoUrl(data.image)
   }
+
+const handleUpload = () => {
+  const file = document.querySelector('input[type="file"]').files[0];
+  const storageRef = firebase.storage().ref();
+  const fileRef = storageRef.child(`users/${image}/profile.jpg`);
+
+  fileRef.put(file)
+    .then(() => {
+      console.log('File uploaded successfully.');
+      return fileRef.getDownloadURL();
+    })
+    .then((url) => {
+      console.log('Download URL:', url);
+      setPhotoUrl(url);
+      return DataInterface.updateUser({ photoUrl: url });
+    })
+    .catch((error) => {
+      console.error('Error uploading file:', error);
+    });
+};
   
   useEffect(() => {
     getUserInfo()
   }, []);
-  // useEffect(() => {
-  //   const user = firebase.auth().currentUser;
-  //   if (user) {
-  //     setName(user.displayName || '');
-  //     setEmail(user.email || '');
-  //     setPassword('');
-  //     setPhotoUrl(user.photoURL || null);
-  //   }
-  // }, []);
-
-  // const handleFile = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     setPhotoFile(file);
-  //     setPhotoUrl(URL.createObjectURL(file));
-  //   }
-  // };
-
-  // const handleUpload = () => {
-  //   if (photoFile) {
-  //     const storageRef = firebase.storage().ref(`users/${firebase.auth().currentUser.uid}/profile.jpg`);
-  //     storageRef.put(photoFile).then(() => {
-  //       storageRef.getDownloadURL().then((url) => {
-  //         setPhotoUrl(url);
-  //         firebase.auth().currentUser.updateProfile({ photoURL: url });
-  //       });
-  //     });
-  //   }
-  // };
-
-  // const handleNameEdit = () => {
-  //   document.getElementById('name-input').disabled = false;
-  //   document.getElementById('name-save').disabled = false;
-  //   document.getElementById('name-edit').disabled = true;
-  // };
-
-  // const handleNameSave = () => {
-  //   firebase.auth().currentUser.updateProfile({ displayName: name }).then(() => {
-  //     document.getElementById('name-input').disabled = true;
-  //     document.getElementById('name-save').disabled = true;
-  //     document.getElementById('name-edit').disabled = false;
-  //   });
-  // };
-
-  // const handleEmailEdit = () => {
-  //   document.getElementById('email-input').disabled = false;
-  //   document.getElementById('email-save').disabled = false;
-  //   document.getElementById('email-edit').disabled = true;
-  // };
-
-  // const handleEmailSave = () => {
-  //   firebase.auth().currentUser.updateEmail(email).then(() => {
-  //     document.getElementById('email-input').disabled = true;
-  //     document.getElementById('email-save').disabled = true;
-  //     document.getElementById('email-edit').disabled = false;
-  //   });
-  // };
-
-  // const handlePasswordEdit = () => {
-  //   document.getElementById('password-input').disabled = false;
-  //   document.getElementById('password-save').disabled = false;
-  //   document.getElementById('password-edit').disabled = true;
-  // };
-
-  // const handlePasswordSave = () => {
-  //   firebase.auth().currentUser.updatePassword(password).then(() => {
-  //     document.getElementById('password-input').disabled = true;
-  //     document.getElementById('password-save').disabled = true;
-  //     document.getElementById('password-edit').disabled = false;
-  //     setPassword('');
-  //   });
-  // };
-
-
 
   return (
     <div className="profile">
-      {/* <h2>Select image</h2>
-      <input type="file" name="file" onChange={(e) => set(e.target.value)} />
-      {photoUrl && <img src={photoUrl} alt="Profile" /> } */}
-      {/* <button className="buttons" type="button" onClick={handleUpload}>Upload</button> */}
+      <h2>Select image</h2>
+      <input type="file" name="file" onChange={(e) => setPhotoUrl(e.target.value)} />
+      {photoUrl && <img src={photoUrl} alt="Profile" /> }
+      <button className="buttons" type="button" onClick={handleUpload}>Upload</button>
+
       <h2>UserName</h2>
-      <input type="text" id="name-input" className="profile-form" placeholder="Enter your full name" value={username} disabled onChange={(e) => setUsername(e.target.value)}></input>
+      <input type="text" id="name-input" className="profile-form" placeholder="Enter your full name" value={username} disabled={!isUsernameEditable} onChange={(e) => setUsername(e.target.value)}></input>
+      {isUsernameEditable ? (
+        <div>
+          <button className="name-save" type="save" onClick={handleUserUpdate}>Save</button>
+          <button className="name-cancel" type="cancel" onClick={() => setIsUsernameEditable(false)}>Cancel</button>
+        </div>
+      ) : (
+        <button className="name-edit" type="edit" onClick={() => setIsUsernameEditable(true)}>Edit</button>
+      )}
       <h2>Email</h2>
-      <input type="text" id="email-input" className="profile-form" placeholder="Enter your email" value={email} disabled onChange={(e) => setEmail(e.target.value)}></input>
+      <input type="text" id="email-input" className="profile-form" placeholder="Enter your email" value={email} disabled={!isEmailEditable} onChange={(e) => setEmail(e.target.value)}></input>
+      {isEmailEditable ? (
+        <div>
+          <button className="email-save" type="save" onClick={handleUserUpdate}>Save</button>
+          <button className="email-cancel" type="cancel" onClick={() => setIsEmailEditable(false)}>Cancel</button>
+        </div>
+      ) : (
+        <button className="email-edit" type="edit" onClick={() => setIsEmailEditable(true)}>Edit</button>
+      )}
       <h2>Community ID</h2>
-      <input type="text" id="communityID-input" className="profile-form" placeholder="Enter your community ID" value={communityID} disabled onChange={(e) => setCommunityID(e.target.value)}></input>
+      <input type="text" id="communityID-input" className="profile-form" placeholder="Enter your community ID" value={communityID} disabled={!isCommunityIDEditable} onChange={(e) => setCommunityID(e.target.value)}></input>
+      {isCommunityIDEditable ? (
+        <div>
+          <button className="communityID-save" type="save" onClick={handleUserUpdate}>Save</button>
+          <button className="communityID-cancel" type="cancel" onClick={() => setIsCommunityIDEditable(false)}>Cancel</button>
+        </div>
+      ) : (
+        <button className="communityID-edit" type="edit" onClick={() => setIsCommunityIDEditable(true)}>Edit</button>
+      )}
      </div>
      
-      )
-      }
+  )
+}
 
 export default ProfileView

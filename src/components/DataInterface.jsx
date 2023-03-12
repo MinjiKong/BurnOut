@@ -219,6 +219,7 @@ export const updateUser = (user) => {
         email: user.email,
         userName: user.userName,
         communityID: user.communityID,
+        image: user.image
     }).then(() => {
         console.log("Document successfully updated!");
     }
