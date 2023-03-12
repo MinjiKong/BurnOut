@@ -61,9 +61,8 @@ function ProfileView() {
     getUserInfo();
   };
 
-  const getUserInfo = () => {
-    const data = DataInterface.getUser()
-
+  const getUserInfo = async () => {
+    const data = await DataInterface.getUser();
     console.log(data)
     setUsername(data.userName)
     setEmail(data.email)
