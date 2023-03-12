@@ -41,12 +41,7 @@
     }
     
     
-    /* .form-row input,
-    .form-row select,
-    .form-row fieldset {
-        margin-top: 0.5rem;
-    } */
-    
+
     .visually-hidden {
         position: absolute;
         overflow: hidden;
@@ -58,14 +53,14 @@
         border: 0;
     }
     
-    .date-row {
+    /* .date-row {
         display: flex;
         margin-top: 1rem;
     }
     
     .date-row:last-child {
         margin-left: 100px;
-    }
+    } */
     
     .button-row {
         display: flex;
