@@ -8,7 +8,7 @@ function Navbar() {
   const navBarLinks = [
     {
         id: 1,
-        name: 'profile',
+        name: 'MyApplications',
         pic: '../images/applications.svg',
         link: '/'
 
@@ -18,8 +18,6 @@ function Navbar() {
         name: 'Community',
         pic: '../images/community_2.svg',
         link: '/community'
-
-
     },
     {
       id: 3,
@@ -31,7 +29,7 @@ function Navbar() {
     },
     {
         id: 4,
-        name: 'Leaderboard',
+        name: 'Profile',
         pic: '../images/person.svg',
         link: '/profile'
     },

@@ -30,6 +30,8 @@ function App() {
     case '/leaderboard':
       text = "Leaderboard"
       break;
+    case '/profile':
+      text = "Profile"
     default:
       text = "Burn Out"
       break;
