@@ -32,24 +32,22 @@ function CommunityView() {
 
 
     },
-    {
-      id: 3,
-      name: 'Gareth',
-      pic: '../images/person.svg',
-      comment: 'Mastercard is the best company ever!',
-      applications: '1',
-      rejections: '0',
-      datetime: '2 hours ago'
-
-
-    },
+    // {
+    //   id: 3,
+    //   name: 'Gareth',
+    //   pic: '../images/person.svg',
+    //   comment: 'Mastercard is the best company ever!',
+    //   applications: '100',
+    //   rejections: '0',
+    //   datetime: '2 hours ago'
+    // },
     {
       id: 4,
       name: 'Deji',
       pic: '../images/person.svg',
       comment: 'Yeah, I got the job at LuluLemon!',
       applications: '500',
-      rejections: '3',
+      rejections: '15',
       datetime: '2 hours ago'
 
     },
