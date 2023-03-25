@@ -9,12 +9,6 @@ function ApplicationsView() {
 
   const userID = DataInterface.getUserID();
 
-  // useEffect(() => {
-  //    DataInterface.getApplications(userID)
-  //   //  console.log("test");
-  //   //  console.log(data);
-  //   // setApplicationData(DataInterface.getApplications(userID))
-  // }, [applicationData]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,9 +18,8 @@ function ApplicationsView() {
     fetchData();
   }, [userID]);
 
-  // console.log("test" + applicationData[0].comments)
 
-  // console.log(applicationData.jobPosition);
+
 
 
 
@@ -66,27 +59,32 @@ function ApplicationsView() {
           <p className='my-auto font-saira'>Rejections: 4</p>
         </div>
       <br></br>
+
+
+      <div className="grid grid-cols-4 gap-4">
+
       {applicationData.map(data => (
-        <div key={data.id} className="flex items-center mb-4 border p-3 bg-slate-200 rounded-lg">
+        <div key={data.id} className="mb-4 border p-3 bg-slate-200 rounded-lg">
           {/* <img src={personPost[0].pic} alt="Profile" className="w-12 h-12 rounded-full mr-4" /> */}
           <div>
             {/* <h3 className="font-bold">{personPost[0].name}</h3> */}
             {/* <p className="text-gray-600 font-saira text-lg mb-2">
               {data.companyName} */}
-            <p className="text-gray-600 mb-2 font-salsa">
-              Company Name: <span className="ml-10 font-saira"></span>{data.companyName}
+            <p className="text-gray-600 mb-2 text-xl font-saira">
+              {data.companyName}
             </p>
-            <p className="text-gray-600 mb-2 font-salsa">
-              Date Applied: <span className="ml-12"></span>{new Date(data.dateApplied * 1000).toLocaleString()}
+            <p className="flex flow-grow justify-between text-gray-600 mb-2 font-salsa">
+              Date Applied: <span></span> {new Date(data.dateApplied * 1000).toLocaleString()}
             </p>
-            <p className="text-gray-600 mb-2 font-salsa">
-              Applications Status: <span className="ml-10"></span>{data.applicationStatus}
+            <p className="flex text-gray-600 mb-2 font-salsa justify-between">
+              Status: <span className="ml-10"></span>{data.applicationStatus}
             </p>
             <p className="text-gray-600 mb-2 font-salsa">
               Job Position: <span className="ml-10"></span>{data.jobPosition}
             </p>
-            <p className="text-gray-600 mb-0 font-salsa">
-              Comments: <span className="ml-10"></span>{data.comments}
+            <br className="divider"></br>
+            <p className="text-gray-600 mb-0 font-salsa font-bold">
+              Comments: <div className="ml-10"></div>{data.comments}
             </p>
             {/* <hr className="h-2"></hr> */}
             <br></br>
@@ -96,6 +94,7 @@ function ApplicationsView() {
       ))}
 
 
+</div>
 
 
 

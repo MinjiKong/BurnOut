@@ -186,6 +186,7 @@ export const getApplications = async (userID) => {
     return applicationsRet;
   };
 
+
 export const getCommunityApplications = (communityID = "0Km4CwF0nULxl1qtpyuB") => {
     const applicationsColRef = collection(db, "applications");
     const communityApplicationsQuery = query(applicationsColRef, where("communityID", "==", communityID), orderBy("dateApplied", "desc"));

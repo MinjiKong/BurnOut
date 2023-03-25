@@ -47,7 +47,7 @@ function App() {
     return children;
  };
   return (
-    <div className="App bg-beige">
+    <div className="App h-screen bg-beige">
 
           <Routes>
             {/* <Route path='/' element={<LoginView/>}></Route> */}
@@ -62,7 +62,7 @@ function App() {
                   <RequireAuth>
                     <Header text={text}/>
                     <ApplicationsView />
-                    <Navbar />
+                    {/* <Navbar /> */}
                   </RequireAuth>
               }
             />
@@ -73,7 +73,7 @@ function App() {
                                         <Header text={text}/>
 
                     <CommunityView />
-                    <Navbar />
+                    {/* <Navbar /> */}
 
                   </RequireAuth>
               }
@@ -85,7 +85,7 @@ function App() {
                                         <Header text={text}/>
 
                     <LeaderboardView />
-                    <Navbar />
+                    {/* <Navbar /> */}
 
                   </RequireAuth>
               }
@@ -97,7 +97,7 @@ function App() {
                                         <Header text={text}/>
 
                     <ProfileView />
-                    <Navbar />
+                    {/* <Navbar /> */}
 
                   </RequireAuth>
               }
@@ -109,7 +109,7 @@ function App() {
                                         <Header text={text}/>
 
                     <ApplicationForm />
-                    <Navbar />
+                    {/* <Navbar /> */}
 
                   </RequireAuth>
               }
