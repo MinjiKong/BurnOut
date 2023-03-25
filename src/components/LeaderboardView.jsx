@@ -61,16 +61,20 @@ function LeaderboardView() {
   }, [])
 
   return (
-    <div className='h-screen bg-beige flex flex-col text-black'>
+    <div className='h-screen bg-beige flex text-black'>
+
+
       {/* Top King of Applications and Rejections */}
-      <div className='h-1/3 flex flex-col my-3'>
-        <div className='flex flex-col items-center justify-center'>
+      <div className=' flex flex-col pt-9 w-1/3 bg-slate-300 border-2'>
+        
+        <div className='flex flex-col gap-3 items-center justify-center'>
+        <p className='text-4xl font-saira text-navy'>{Leadboards[0].name}</p>
+
           <img className="mx-auto my-auto" src={Leadboards[0].pic} alt={Leadboards[0].name}></img>
-          <p className='text-lg font-saira text-navy'>{Leadboards[0].name}</p>
 
 
           {/* Deets */}
-          <div className='flex gap-3 items-center'>
+          <div className='flex font-saira gap-3 items-center'>
             {/* Applications */}
             <p className='text-md flex'>
               <object className="mx-auto my-auto" type="image/svg+xml" data={application}></object>
@@ -84,8 +88,12 @@ function LeaderboardView() {
               <p className='m-auto'>{Leadboards[0].rejections}</p>
             </p>
           </div>
+                      {/* Ranking */}
+                      <p className='text-md font-saira text-navy text-xl'>Rank: 3</p>
         </div>
       </div>
+      {/* Rankings Column */}
+      <div className='flex flex-col w-2/3'>
 
       {/* Rankings */}
       <p className="text-4xl m-3 font-bold font-saira text-dark-navy text-center mt-10">RANKINGS:</p>
@@ -96,11 +104,11 @@ function LeaderboardView() {
         {/* Each card */}
         {sortedLeaderBoards.map(({ id, link, pic, name, rejections, applications, datetime, comment }, index) => {
           return (
-            <div className=" p-2 flex justify-between border-solid border-black border-1 bg-slate-200 mx-2" key={id}>
+            <div className=" p-2 rounded-lg flex justify-between border-solid border-black border-1 bg-slate-200 mx-2" key={id}>
 
 
               <div className='flex gap-2 w-1/5'>
-                <p className='text-navy m-auto font-saira'>{index + 1}</p>
+                <p className='text-navy m-auto font-saira text-4xl'>{index + 1}</p>
                 <img src={pic} alt="" className='grow' />
               </div>
 
@@ -112,12 +120,12 @@ function LeaderboardView() {
                   <div className="flex">
                     <object className="mx-auto my-auto" type="image/svg+xml" data={application}></object>
 
-                    <p className='m-auto'>{applications}</p>
+                    <p className='m-auto font-saira'>Applications: {applications}</p>
 
                   </div>
                   <div className='flex'>
                     <object className="mx-auto my-auto" type="image/svg+xml" data={rejection}></object>
-                    <p className='m-auto font-saira'>{rejections}</p>
+                    <p className='m-auto font-saira'>Rejections: {rejections}</p>
 
 
                   </div>
@@ -132,6 +140,8 @@ function LeaderboardView() {
         })}
 
       </div>
+      </div>
+
 
 
     </div>
