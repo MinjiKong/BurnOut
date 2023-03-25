@@ -57,15 +57,26 @@ const handleUpload = () => {
   }, []);
 
   return (
-    <div className="profile p-4 bg-slate-200 m-2 h-screen flex flex-col">
+    <div className="profile p-4 bg-slate-200 h-screen m-auto flex">
+      {/*  column with image */}
+      <section className='flex w-1/2 flex-col my-auto justify-start'>
+        <h2 className="font-bold text-4xl font-saira  text-dark-navy text-center">Change Photo</h2>
+        {photoUrl && <img className='m-3 mx-auto w-2/3' src={photoUrl} alt="Profile" /> }
+        <input className="ml-20" type="file" name="file" onChange={(e) => setPhotoUrl(e.target.value)} />
 
-      <h2 className="font-bold text-dark-navy text-center">Your Image</h2>
-      <input className="ml-20" type="file" name="file" onChange={(e) => setPhotoUrl(e.target.value)} />
-      {photoUrl && <img src={photoUrl} alt="Profile" /> }
 
-      <button className="text-white text-ig bg-navy font-bold rounded-20 py-2 px-4 cursor-pointer" type="button" onClick={handleUpload}>Upload</button>
-      <br></br>
-      <h2 className="font-bold text-dark-navy ml-4">User name</h2>
+        <button className="text-white text-ig bg-navy font-bold rounded-20 py-2 px-4 cursor-pointer" type="button" onClick={handleUpload}>Upload</button>
+        <br></br>
+
+      </section>
+
+
+      {/*  column with details */}
+      <section className='flex w-1/2 flex-col my-auto'>
+        {/* <h2 className="font-bold text-4xl font-saira text-dark-navy text-center">Your Details</h2> */}
+       {/* Details */}
+
+      <h2 className="font-bold text-dark-navy ml-4">Username</h2>
       <div className="flex">
       <input type="text" id="name-input" className="profile-form" placeholder="Enter your full name" value={username} disabled={!isUsernameEditable} onChange={(e) => setUsername(e.target.value)}></input>
 
@@ -108,7 +119,9 @@ const handleUpload = () => {
         <button className="communityID-edit font-bold text-white bg-navy rounded-20 py-2 px-4 cursor-pointer" type="edit" onClick={() => setIsCommunityIDEditable(true)}>Edit</button>
         </div>
       )}
+
      </div>
+     </section>
      </div>
 
   )

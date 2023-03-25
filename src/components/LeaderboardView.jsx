@@ -61,11 +61,11 @@ function LeaderboardView() {
   }, [])
 
   return (
-    <div className='h-screen bg-beige flex text-black'>
+    <div className='h-screen bg-beige md:flex text-black'>
 
 
       {/* Top King of Applications and Rejections */}
-      <div className=' flex flex-col pt-9 w-1/3 bg-slate-300 border-2'>
+      <div className=' flex flex-col md:pt-9 md:w-1/3 bg-slate-300 border-2'>
         
         <div className='flex flex-col gap-3 items-center justify-center'>
         <p className='text-4xl font-saira text-navy'>{Leadboards[0].name}</p>
@@ -93,7 +93,7 @@ function LeaderboardView() {
         </div>
       </div>
       {/* Rankings Column */}
-      <div className='flex flex-col w-2/3'>
+      <div className='flex flex-col md:w-2/3'>
 
       {/* Rankings */}
       <p className="text-4xl m-3 font-bold font-saira text-dark-navy text-center mt-10">RANKINGS:</p>
