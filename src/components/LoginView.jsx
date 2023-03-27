@@ -25,18 +25,6 @@ function LoginView(props) {
     }
   }, [user]);
 
-  // const [currentForm, setCurrentForm] = useState('login');
-  // const toggleForm = (formName) => {
-  //   setCurrentForm(formName);
-  // }
-
-  // return (
-  //   <div className="App">
-  //   {
-  //     currentForm === "login" ? <LoginView onFormSwitch={toggleForm} /> : <SignUpView onFormSwitch={toggleForm}/>
-  //   }
-  //   </div>
-  // )
 
   return (
     <div className="h-screen justify-center flex flex-col bg-dark-navy">
