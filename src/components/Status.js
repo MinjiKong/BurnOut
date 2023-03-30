@@ -5,12 +5,14 @@ import { useNavigate } from 'react-router'
 import Pool from './UserPool'
 
 
+
 export const Status = () => {
     const [status, getStatus] = useState(false);
     const {getSession, logout} = useContext(AccountContext);
     const user = Pool.getCurrentUser()
+    const [loggedIn, setLoggedIn] = useState(user)
 
-
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -19,10 +21,12 @@ export const Status = () => {
             console.log("Logged in", session)
             getStatus(true)
         });
-
-    }, [])
+    }, [getSession])
 
   return (
-    <div>{status ? <button onClick={logout}>Welcome, {user.username} </button> : '' }</div>
+    <div className='flex justify-end'>
+        <div>{status ? <button className='bg-dark-navy p-4 rounded-b-lg text-white font-salsa' onClick={logout}>{user.username},  LOGOUT </button> : '' }</div>
+
+    </div>
   )
 }

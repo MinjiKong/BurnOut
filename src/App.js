@@ -20,6 +20,7 @@ function App() {
   const handleLogin = () => {
     setIsLogin(true);
   }
+  
 
   var text = "Burn Out"
   switch (location.pathname) {

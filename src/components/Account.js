@@ -26,7 +26,8 @@ export const Account = (props) => {
             }
         })
     }
-    
+
+    // To authenticate
     const authenticate = async (Username, Password) => {
         return await new Promise((resolve, reject) => {
 
@@ -57,14 +58,14 @@ export const Account = (props) => {
         })
     }
 
-    const logout = async () => {
+    const logout = () => {
         const user = Pool.getCurrentUser()
-
         if (user) {
             console.log("Logging out")
-            await user.signOut()
-            navigate('/login')
+            user.signOut()
 
+
+            
         }
     }
 
