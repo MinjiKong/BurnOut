@@ -17,7 +17,7 @@ function Header(props) {
         id: 1,
         name: 'MyApplications',
         pic: '../images/applications.svg',
-        link: '/'
+        link: '/home'
 
     },
     {

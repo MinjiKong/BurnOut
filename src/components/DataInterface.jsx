@@ -180,7 +180,7 @@ export const getApplications = async (userID) => {
 
     querySnapshot.forEach((doc) => {
       applicationsRet.push(doc.data());
-      console.log(doc.id, " => ", doc.data());
+    //   console.log(doc.id, " => ", doc.data());
     });
 
     return applicationsRet;

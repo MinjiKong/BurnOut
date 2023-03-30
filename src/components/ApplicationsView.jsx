@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as DataInterface from './DataInterface'
+import Pool from "./UserPool";
 
 function ApplicationsView() {
 
@@ -10,10 +11,15 @@ function ApplicationsView() {
   const userID = DataInterface.getUserID();
 
 
+
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await DataInterface.getApplications(userID);
       setApplicationData(data);
+      console.log(Pool.getCurrentUser().username)
     };
     fetchData();
   }, [userID]);

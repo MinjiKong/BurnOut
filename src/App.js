@@ -11,6 +11,8 @@ import Header from "./components/Header";
 import LeaderboardView from "./components/LeaderboardView";
 import * as DataInterface from './components/DataInterface'
 import ProfileView from "./components/ProfileView";
+import { Account } from "./components/Account";
+import { Status } from "./components/Status";
 
 function App() {
   const location = useLocation();
@@ -38,27 +40,23 @@ function App() {
       break;
   }
 
-  const RequireAuth = ({ children }) => {
-    const userIsLogged = DataInterface.isLoggedIn();//useLoginStatus(); // Your hook to get login status
 
-    if (!userIsLogged) {
-       return <LoginView />;
-    }
-    return children;
- };
   return (
     <div className="App h-screen bg-beige">
+      <Account>
+          <Header text={text}/>
+          <Status/>
 
           <Routes>
             <Route path='/' element={<LoginView/>}></Route>
-            <Route path='/' element={<ApplicationsView/>}></Route>
+            <Route path='/home' element={<ApplicationsView/>}></Route>
             <Route path="/login" element={<LoginView/>}></Route>
             <Route path='/signup' element={<SignUpView />}></Route>
             <Route path="/community" element={<CommunityView />}></Route>
             <Route path='/leaderboard' element={<LeaderboardView />}></Route>
-        
+            <Route path='/profile' element={<ProfileView />}></Route>
           </Routes>
-
+      </Account>
       </div>
   )
 }

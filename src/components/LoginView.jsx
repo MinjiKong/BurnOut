@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import jwt_decode from "jwt-decode";
-import { GoogleLogin } from "@react-oauth/google";
-import GoogleButton from 'react-google-button'
 import '../login-signup.css'
 import { useNavigate } from "react-router-dom";
-import * as DataInterface from './DataInterface'
-import UserPool from './UserPool';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
-
+import { AccountContext, Account } from './Account';
+import { data } from 'autoprefixer';
+import { useContext } from 'react';
 
 
 
@@ -16,37 +13,24 @@ function LoginView(props) {
   const [password, setPassword] = useState('');
   const [user, setUser] = useState(null);
 
+  const { authenticate } = useContext(AccountContext);
+
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = new CognitoUser({
-      Username: email,
-      Pool: UserPool,
-    })
-
-    const authDetails = new AuthenticationDetails({
-      Username: email,
-      Password: password,
-    })
-
-    user.authenticateUser(authDetails, {
-      onSuccess: (data) => {
-        console.log("onSuccess:", data);
-      },
-      onFailure: (err) => {
-        console.error("onFailure:", err);
-      },
-      newPasswordRequired: (data) => {
-        console.log("newPasswordRequired:", data);
-      }
-    })
+    authenticate(email, password).then(() => {
+      navigate("/home");
+      console.log( data)
+    }
+    );
       
   }
 
   useEffect(() => {
     if (user) {
-      return navigate("/");
+      // return navigate("/");
+      console.log(data)
     }
   }, [user]);
 
