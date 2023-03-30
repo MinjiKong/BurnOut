@@ -50,87 +50,13 @@ function App() {
     <div className="App h-screen bg-beige">
 
           <Routes>
-            {/* <Route path='/' element={<LoginView/>}></Route> */}
-            {/* <Route path='/' element={<ApplicationsView/>}></Route> */}
-            {/* <Route path="/login" element={<Login/>}></Route> */}
-            {/* <Route path='/settings' element={<Settings />}></Route> */}
-            {/* <Route path="/community" element={<CommunityView />}></Route> */}
-            {/* <Route path='/leaderboard' element={<LeaderboardView />}></Route> */}
-            <Route
-              path="/"
-              element={
-                  <RequireAuth>
-                    <Header text={text}/>
-                    <ApplicationsView />
-                    {/* <Navbar /> */}
-                  </RequireAuth>
-              }
-            />
-            <Route
-              path="/community"
-              element={
-                  <RequireAuth>
-                                        <Header text={text}/>
-
-                    <CommunityView />
-                    {/* <Navbar /> */}
-
-                  </RequireAuth>
-              }
-            />
-            <Route
-              path="/leaderboard"
-              element={
-                  <RequireAuth>
-                                        <Header text={text}/>
-
-                    <LeaderboardView />
-                    {/* <Navbar /> */}
-
-                  </RequireAuth>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                  <RequireAuth>
-                                        <Header text={text}/>
-
-                    <ProfileView />
-                    {/* <Navbar /> */}
-
-                  </RequireAuth>
-              }
-            />
-            <Route
-              path="/applicationform"
-              element={
-                  <RequireAuth>
-                                        <Header text={text}/>
-
-                    <ApplicationForm />
-                    {/* <Navbar /> */}
-
-                  </RequireAuth>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                  // <RequireAuth>
-                    <LoginView />
-                  // </RequireAuth>
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                  // <RequireAuth>
-                    <SignUpView />
-                  // </RequireAuth>
-              }
-            />
-
+            <Route path='/' element={<LoginView/>}></Route>
+            <Route path='/' element={<ApplicationsView/>}></Route>
+            <Route path="/login" element={<LoginView/>}></Route>
+            <Route path='/signup' element={<SignUpView />}></Route>
+            <Route path="/community" element={<CommunityView />}></Route>
+            <Route path='/leaderboard' element={<LeaderboardView />}></Route>
+        
           </Routes>
 
       </div>
